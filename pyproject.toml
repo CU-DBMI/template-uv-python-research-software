@@ -1,43 +1,51 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [ "setuptools>=64", "setuptools-scm>=8" ]
+
 [project]
 name = "template-uv-python-research-software"
 version = "0.0.1"
 description = "A template for Pythonic research software with environment management through uv."
 readme = "README.md"
 authors = [
-    { name = "d33bs" }
+  { name = "d33bs" },
 ]
 requires-python = ">=3.11"
+classifiers = [
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
 dependencies = [
-    "pandas>=2.2.3",
+  "pandas>=2.2.3",
 ]
 
-[project.scripts]
-template-uv-python-research-software = "template_uv_python_research_software:main"
-
-[build-system]
-build-backend = "setuptools.build_meta"
-requires = [ "setuptools>=64", "setuptools-scm>=8" ]
+scripts.template-uv-python-research-software = "template_uv_python_research_software:main"
 
 [dependency-groups]
 dev = [
-    "poethepoet>=0.34.0",
-    "pytest>=8.3.5",
+  "poethepoet>=0.34",
+  "pytest>=8.3.5",
 ]
 docs = [
-    "myst-nb>=1.2.0",
-        "pydata-sphinx-theme>=0.16.1",
-        "sphinx>=8.2.3",
-        ]
+  "myst-nb>=1.2",
+  "pydata-sphinx-theme>=0.16.1",
+  "sphinx>=8.2.3",
+]
 notebooks = [
-    "jupyterlab>=4.4.2",
-    "jupyterlab-code-formatter>=3.0.2",
-    "black>=25.1.0",
-    "isort>=6.0.1",
-    "jupytext>=1.17.1",
+  "black>=25.1",
+  "isort>=6.0.1",
+  "jupyterlab>=4.4.2",
+  "jupyterlab-code-formatter>=3.0.2",
+  "jupytext>=1.17.1",
 ]
 
-[tool.pytest.ini_options]
-pythonpath = [ "." ]
+[tool.setuptools_scm]
+root = "."
+version_scheme = "no-guess-dev"
+local_scheme = "no-local-version"
+version_file = "src/example_project/_version.py"
 
 [tool.ruff]
 target-version = "py38"
@@ -67,11 +75,8 @@ lint.select = [
   "W",
 ]
 
-[tool.setuptools_scm]
-root = "."
-version_scheme = "no-guess-dev"
-local_scheme = "no-local-version"
-version_file = "src/example_project/_version.py"
+[tool.pytest.ini_options]
+pythonpath = [ "." ]
 
 [tool.poe.tasks]
 # tasks for development environments

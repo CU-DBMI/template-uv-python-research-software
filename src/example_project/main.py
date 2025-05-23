@@ -4,6 +4,7 @@ An example module for a Pyhton research software project.
 
 import pandas as pd
 
+
 def show_message(message: str = "Hello, world!") -> pd.DataFrame:
     """
     A simple function that returns a message
@@ -19,4 +20,4 @@ def show_message(message: str = "Hello, world!") -> pd.DataFrame:
             A DataFrame containing the message.
     """
 
-    return pd.DataFrame({'message': [message]})
+    return pd.DataFrame({"message": [message]})

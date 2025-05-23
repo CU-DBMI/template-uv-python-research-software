@@ -4,6 +4,7 @@ Tests for the main module.
 
 from example_project.main import show_message
 
+
 def test_show_message() -> None:
     """
     Test the show_message function.
