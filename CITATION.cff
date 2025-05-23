@@ -1,0 +1,21 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+---
+cff-version: 1.2.0
+title: example_project
+message: >-
+  If you use this software, please cite it using the
+  metadata from the CITATION.cff file.
+type: software
+authors:
+  - given-names: Name
+    family-names: Here
+    orcid: 'https://orcid.org/0000-0000-0000-0000'
+repository-code: '<repo>'
+abstract: >-
+  This is a description of the project
+keywords:
+  - python
+license: BSD-3-Clause
+references:
+
