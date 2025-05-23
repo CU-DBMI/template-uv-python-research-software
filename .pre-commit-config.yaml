@@ -56,3 +56,7 @@ repos:
     rev: 'v2.14'
     hooks:
     -   id: vulture
+-   repo: https://github.com/aristanetworks/j2lint
+    rev: "v1.2.0"
+    hooks:
+    -   id: j2lint

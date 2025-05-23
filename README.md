@@ -1,18 +1,18 @@
-# <project name>
+# template-uv-python-research-software
 
-A template for Pythonic research software with environment management through `uv`.
+[![Copier](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-inverted-border-orange.json)](https://github.com/copier-org/copier)
 
-## Post template copy instructions
+This is a [`copier`](https://github.com/copier-org/copier) template for building Python research software through the `uv` environment manager.
 
-While we provide some customizations to the files in this template based on your specification there's likely a chance some things aren't perfect.
-We recommend taking a look at each file used within this template to ensure it meets your expectations for the project you're working on.
-In addition, consider the following steps to help ensure the project is in good shape before proceeding too far.
+## Using this template
 
-- [ ] Remove files you plan on not using (e.g. `src/notebooks`, `.github/workflows/publish-pypi.yml`, etc.).
-- [ ] Update the `LICENSE` file based on the project.
-- [ ] Update the `CITATION.cff` file based on the project.
-- [ ] Update the project dependencies using `uv remove` or `uv add`.
-- [ ] Update the `pyproject.toml` file based on the project.
-- [ ] Enable `pre-commit-lite` to help automate corrections to code during pull request updates. Otherwise, consider removing the step: labeled with: `pre-commit-ci/lite-action` within `.github/workflows/run-tests.yml`.
-- [ ] Enable private security vulnerability issue reporting within the repo settings (e.g. https://github.com/repo_org/repo_name/settings/security_analysis)
-- [ ] Enable branch protection rules to require one pull request review approval per pull request to help with maintainer expectations.
+Follow these steps to use this template:
+
+1. [Install `copier`](https://copier.readthedocs.io/en/stable/#installation) (e.g. `pip install copier`).
+1. Reference this repository through the `copier copy <source> <target>` command. (e.g. `copier copy https://github.com/cu-dbmi/template-uv-python-research-software destination_path`)
+1. Follow the directions in your new repo's `README.md`.
+1. Enjoy!
+
+## Development
+
+We use `jinja2` templates through `copier` to help implement this work.

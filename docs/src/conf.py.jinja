@@ -19,7 +19,7 @@ sys.path.insert(0, basedir)
 
 # -- Project information -----------------------------------------------------
 
-project = "example_project"
+project = "{{ project_name }}"
 # is used here due to sphinx decision-making: https://github.com/sphinx-doc/sphinx/issues/8132
 copyright = "2024, DBMI Community"  # noqa: A001
 author = "DBMI Community"
@@ -56,11 +56,11 @@ html_theme_options = {
     "icon_links": [
         {
             "name": "GitHub",
-            "url": "<project git host>",
+            "url": "{{ github_url }}",
             "icon": "fa-brands fa-github",
         },
     ],
-    "logo": {"text": "<project name>"},
+    "logo": {"text": "{{ project_name}}"},
     "use_edit_page_button": False,
     "show_toc_level": 1,
     "navbar_align": "left",
