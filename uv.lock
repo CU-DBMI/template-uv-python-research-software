@@ -1887,10 +1887,12 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
-    { name = "myst-nb" },
     { name = "poethepoet" },
-    { name = "pydata-sphinx-theme" },
     { name = "pytest" },
+]
+docs = [
+    { name = "myst-nb" },
+    { name = "pydata-sphinx-theme" },
     { name = "sphinx" },
 ]
 notebooks = [
@@ -1906,14 +1908,16 @@ requires-dist = [{ name = "pandas", specifier = ">=2.2.3" }]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "myst-nb", specifier = ">=1.2.0" },
-    { name = "poethepoet", specifier = ">=0.34.0" },
-    { name = "pydata-sphinx-theme", specifier = ">=0.16.1" },
+    { name = "poethepoet", specifier = ">=0.34" },
     { name = "pytest", specifier = ">=8.3.5" },
+]
+docs = [
+    { name = "myst-nb", specifier = ">=1.2" },
+    { name = "pydata-sphinx-theme", specifier = ">=0.16.1" },
     { name = "sphinx", specifier = ">=8.2.3" },
 ]
 notebooks = [
-    { name = "black", specifier = ">=25.1.0" },
+    { name = "black", specifier = ">=25.1" },
     { name = "isort", specifier = ">=6.0.1" },
     { name = "jupyterlab", specifier = ">=4.4.2" },
     { name = "jupyterlab-code-formatter", specifier = ">=3.0.2" },

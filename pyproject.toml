@@ -74,6 +74,8 @@ lint.select = [
   "SIM",
   "W",
 ]
+# Ignore `F401` (unused imports) for `__init__.py` file
+lint.per-file-ignores."__init__.py" = [ "F401" ]
 
 [tool.pytest.ini_options]
 pythonpath = [ "." ]
@@ -89,3 +91,7 @@ jupyter lab
 
 [tool.jupytext]
 formats = "ipynb,py:light"
+
+[tool.vulture]
+min_confidence = 90
+paths = [ "src/example_project", "tests" ]

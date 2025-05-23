@@ -6,5 +6,5 @@ import pytest
 
 
 @pytest.fixture
-def my_data():
+def my_data() -> str:
     return "Hello, differently!"

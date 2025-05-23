@@ -5,7 +5,7 @@ Tests for the main module.
 from example_project.main import show_message
 
 
-def test_show_message() -> None:
+def test_show_message(my_data: str) -> None:
     """
     Test the show_message function.
     """
@@ -15,8 +15,6 @@ def test_show_message() -> None:
     assert result.shape == (1, 1)
     assert result.iloc[0, 0] == "Hello, world!"
 
-    # Test custom message
-    custom_message = "Custom message"
-    result = show_message(custom_message)
+    result = show_message(my_data)
     assert result.shape == (1, 1)
-    assert result.iloc[0, 0] == custom_message
+    assert result.iloc[0, 0] == my_data

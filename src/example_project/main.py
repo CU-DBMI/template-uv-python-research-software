@@ -1,5 +1,5 @@
 """
-An example module for a Pyhton research software project.
+An example module for a Python research software project.
 """
 
 import pandas as pd
