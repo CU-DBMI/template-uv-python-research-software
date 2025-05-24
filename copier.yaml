@@ -1,23 +1,43 @@
 # copier.yaml
 project_name:
   type: str
-  help: What is the name of your project? This will be used in the package name and other places.
+  help: >-
+    What is the name of your project?
+    This will be used in the package name
+    and other places. Please use "_"
+    underscores instead of spaces where
+    necessary, e.g. "my_project".
 
 project_description:
   type: str
-  help: A short description of the project. This will be used in the package metadata and other places.
+  help: >-
+    A short description of the project.
+    This will be used in the package metadata
+    and other places.
 
 author_name:
   type: str
   default: "Your Name"
-  help: Your name. This will be used in the package metadata and other places.
+  help: >-
+    Your name. This will be used
+    in the package metadata and other places.
 
 author_orcid:
   type: str
   default: "https://orcid.org/0000-0000-0000-0000"
-  help: Your ORCID. This will be used in the package metadata and other places.
+  help: >-
+    Your ORCID. This will be used in
+    the package metadata and other places.
 
 github_url:
   type: str
   default: "https://github.com/org/repo"
-  help: The URL of the GitHub repository. This will be used in the package metadata and other places.
+  help: >-
+    The URL of the GitHub repository.
+    This will be used in the package metadata
+    and other places.
+
+_exclude:
+  - copier.yaml
+  - tests/test_template.py
+  - .github/workflows/test-template.yml

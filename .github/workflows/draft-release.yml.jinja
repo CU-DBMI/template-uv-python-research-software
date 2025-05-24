@@ -2,7 +2,7 @@
 # workflow for drafting releases on GitHub
 # see: https://github.com/release-drafter/release-drafter
 name: release drafter
-
+{% raw %}
 on:
   push:
     branches:
@@ -21,3 +21,4 @@ jobs:
       - uses: release-drafter/release-drafter@v6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+{% endraw %}

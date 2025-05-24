@@ -60,3 +60,4 @@ repos:
     rev: "v1.2.0"
     hooks:
     -   id: j2lint
+        exclude: "draft-release.yml.jinja"
