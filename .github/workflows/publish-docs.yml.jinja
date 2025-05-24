@@ -1,7 +1,7 @@
 ---
 # used for publishing documentation on push to main or published release
 name: publish docs
-
+{% raw %}
 on:
   push:
     branches:
@@ -39,3 +39,4 @@ jobs:
         with:
           branch: pages
           folder: pages
+{% endraw %}
