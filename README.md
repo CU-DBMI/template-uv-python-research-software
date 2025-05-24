@@ -26,6 +26,12 @@ Follow these steps to use this template:
 - Support for Jupyter notebook development alongside a local Python package
 - `.pre-commit-config.yaml` which can help with pre-commit checks for your project
 
+## Post-copy guidance
+
+Please reference the `README.md` checklist for suggested next steps after copying the template.
+When using the Jupyter notebook work, consider using `uv run jupyter lab` (or similar) to run notebooks which are invoked from the context of the virtual environment of the project.
+This helps the notebook gain dependencies and access to the packaged work outside the notebooks directory.
+
 ## Development
 
 This project is a [Copier](https://copier.readthedocs.io/) template repository, designed to scaffold new projects using customizable templates.
