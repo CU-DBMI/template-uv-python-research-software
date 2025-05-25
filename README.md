@@ -25,6 +25,7 @@ Follow these steps to use this template:
 - Community health files like LICENSE, CODE_OF_CONDUCT, and CONTRIBUTING with boilerplate language
 - Support for Jupyter notebook development alongside a local Python package
 - `.pre-commit-config.yaml` which can help with pre-commit checks for your project
+- Adds a CLI boilerplate to build from based on `fire`.
 
 ## Post-copy guidance
 
