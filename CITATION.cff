@@ -1,0 +1,22 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+---
+cff-version: 1.2.0
+title: template-uv-python-research-software
+message: >-
+  If you use this software, please cite it using the
+  metadata from the CITATION.cff file.
+type: software
+authors:
+  - given-names: David
+    family-names: Bunten
+    orcid: "https://orcid.org/0000-0001-6041-3665"
+repository-code: "https://github.com/CU-DBMI/template-uv-python-research-software"
+abstract: >-
+  A template for Pythonic research software with environment management through uv.
+keywords:
+  - python
+  - uv
+  - research-software
+  - template
+license: BSD-3-Clause
