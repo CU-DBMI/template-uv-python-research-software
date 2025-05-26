@@ -3,6 +3,7 @@
 [![Copier](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-inverted-border-orange.json)](https://github.com/copier-org/copier)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
+[![Software DOI badge](https://zenodo.org/badge/DOI/10.5281/zenodo.15518401.svg)](https://doi.org/10.5281/zenodo.15518401)
 
 This is a [`copier`](https://github.com/copier-org/copier) template for building Python research software through the `uv` environment manager.
 
