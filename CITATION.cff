@@ -20,3 +20,6 @@ keywords:
   - research-software
   - template
 license: BSD-3-Clause
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.15518401"
