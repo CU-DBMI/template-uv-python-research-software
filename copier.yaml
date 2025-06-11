@@ -41,3 +41,8 @@ _exclude:
   - copier.yaml
   - tests/test_template.py
   - .github/workflows/test-template.yml
+  
+_envops:
+  # Jinja settings to remove whitespace
+  lstrip_blocks: true
+  trim_blocks: true
