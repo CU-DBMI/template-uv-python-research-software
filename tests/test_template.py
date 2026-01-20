@@ -20,7 +20,7 @@ def test_template(tmp_path: Path) -> None:
         src_path=str(template_path),
         dst_path=dst_path,
         data={
-            "project_name": "demo_project",
+            "project_name": "demo-project",
             "project_description": "A demo project for testing Copier templates.",
             "author_name": "Test Author",
             "author_orcid": "https://orcid.org/0000-0000-0000-0000",
@@ -28,6 +28,7 @@ def test_template(tmp_path: Path) -> None:
         },
         quiet=True,
         overwrite=True,
+        vcs_ref="HEAD",
     )
 
     # Assert a file from the template was created

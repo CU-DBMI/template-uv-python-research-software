@@ -22,7 +22,7 @@ dependencies = [
   "fire>=0.7.0",
   "jinja2>=3.1.6",
 ]
-scripts.{{ project_name }} = "{{ project_name }}.cli:trigger"
+scripts.{{ project_name }} = "{{ python_package_name }}.cli:trigger"
 
 [dependency-groups]
 dev = [
@@ -46,7 +46,7 @@ notebooks = [
 root = "."
 version_scheme = "no-guess-dev"
 local_scheme = "no-local-version"
-version_file = "src/{{ project_name }}/_version.py"
+version_file = "src/{{ python_package_name }}/_version.py"
 
 [tool.ruff]
 target-version = "py311"
@@ -95,4 +95,4 @@ formats = "ipynb,py:light"
 
 [tool.vulture]
 min_confidence = 90
-paths = [ "src/{{ project_name }}", "tests" ]
+paths = [ "src/{{ python_package_name }}", "tests" ]
