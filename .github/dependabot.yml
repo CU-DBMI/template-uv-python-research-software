@@ -13,7 +13,11 @@ updates:
     directory: "/"
     schedule:
       # Check for updates to GitHub Actions every week
-      interval: "weekly"
+      interval: "monthly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
 
   # Perform checks and updates for python uv environment.
   # This depends on changes to dependabot via:
@@ -24,7 +28,7 @@ updates:
     directory: "/"
     schedule:
       # Check for updates to uv environment files every week
-      interval: "weekly"
+      interval: "monthly"
     groups:
       python-packages:
         patterns:
