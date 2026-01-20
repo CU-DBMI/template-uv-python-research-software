@@ -62,4 +62,4 @@ pythonpath = [ "." ]
 
 [tool.vulture]
 min_confidence = 90
-paths = [ "src/{{ project_name }}", "tests" ]
+paths = [ "src/{{ python_package_name }}", "tests" ]

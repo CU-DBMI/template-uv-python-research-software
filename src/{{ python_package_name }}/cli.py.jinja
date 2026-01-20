@@ -1,13 +1,13 @@
 """
-CLI for nviz
+CLI for {{ python_package_name }}
 """
 
 import fire
 
-from {{ project_name }}.main import show_message
+from {{ python_package_name }}.main import show_message
 
 
-class {{ project_name }}CLI:
+class {{ python_package_name }}CLI:
     def show_message(
         self,
         message: str = "Hello, world!",
@@ -33,4 +33,4 @@ def trigger() -> None:
     """
     Trigger the CLI to run.
     """
-    fire.Fire({{ project_name }}CLI)
+    fire.Fire({{ python_package_name }}CLI)
