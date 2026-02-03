@@ -21,7 +21,8 @@ jobs:
           python-version: "3.11"
       - name: Install the latest version of uv
         uses: astral-sh/setup-uv@v6
-      - uses: pre-commit/action@v3.0.1
+      # use prek for speedy precommit results
+      - uses: j178/prek-action@v1
       # run pre-commit ci lite for automated fixes
       - uses: pre-commit-ci/lite-action@v1.1.0
         if: ${{ !cancelled() }}
