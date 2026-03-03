@@ -57,8 +57,8 @@ lint.select = [
 # Ignore `F401` (unused imports) for `__init__.py` file
 lint.per-file-ignores."__init__.py" = [ "F401" ]
 
-[tool.pytest.ini_options]
-pythonpath = [ "." ]
+[tool.pytest]
+ini_options.pythonpath = [ "." ]
 
 [tool.vulture]
 min_confidence = 90
