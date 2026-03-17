@@ -16,6 +16,8 @@ Follow these steps to use this template:
 1. Follow the directions in your new repo's `README.md` and make sure to check each file for alignment with your project.
 1. Enjoy!
 
+Copier already excludes `.git` from rendered output, so copying this template into an existing repository keeps that repository's history in place instead of importing this template's history. Copier also does not automatically run `git init` for a fresh destination. That could be done with a post-copy task, but Copier treats tasks as an unsafe feature, so this template leaves repository initialization as an explicit user step.
+
 ## What's included in the template
 
 - Pre-configured `pyproject.toml` for Python project management

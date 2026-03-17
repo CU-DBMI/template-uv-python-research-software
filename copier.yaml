@@ -43,6 +43,12 @@ github_url:
     and other places.
 
 _exclude:
+  - .git
+  - .DS_Store
+  - .svn
+  - __pycache__
+  - "*.py[co]"
+  - "~*"
   - copier.yaml
   - tests/test_template.py
   - .github/workflows/test-template.yml
