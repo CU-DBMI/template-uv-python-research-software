@@ -35,7 +35,7 @@ jobs:
           find ./build -type d -name '.doctrees' -exec rm -rf {} +
           cp -r build/* ../pages/
       - name: Deploy documentation
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@v4.8.0
         with:
           branch: pages
           folder: pages
