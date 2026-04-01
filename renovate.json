@@ -1,0 +1,23 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "schedule": ["* * 1 * *"],
+  "enabledManagers": ["custom.regex"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^\\.github\\/workflows\\/.+\\.yml\\.jinja$/"
+      ],
+      "matchStrings": [
+        "uses:\\s+(?<depName>[^@\\s]+)@(?<currentValue>[^\\s]+)"
+      ],
+      "datasourceTemplate": "github-tags"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["custom.regex"],
+      "groupName": "github actions"
+    }
+  ]
+}
