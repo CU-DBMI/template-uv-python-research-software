@@ -50,6 +50,7 @@ _exclude:
   - "*.py[co]"
   - "~*"
   - copier.yaml
+  - renovate.json
   - tests/test_template.py
   - .github/workflows/test-template.yml
 

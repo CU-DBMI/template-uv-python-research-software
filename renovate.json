@@ -2,6 +2,10 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "schedule": ["* * 1 * *"],
   "enabledManagers": ["custom.regex"],
+  "ignorePaths": [
+    ".github/workflows/*.yml",
+    ".github/workflows/*.yaml"
+  ],
   "customManagers": [
     {
       "customType": "regex",

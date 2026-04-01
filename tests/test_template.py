@@ -50,6 +50,7 @@ def test_template(tmp_path: Path) -> None:
     # Assert a file from the template was created
     assert (dst_path / "src/demo_project/main.py").exists()
     assert not (dst_path / ".git").exists()
+    assert not (dst_path / "renovate.json").exists()
 
     # Run pytest from the copied template
     subprocess.run(["uv", "run", "pytest"], cwd=dst_path, check=True)
@@ -77,5 +78,6 @@ def test_template_preserves_existing_git_repo(tmp_path: Path) -> None:
     )
 
     assert (dst_path / "src/demo_project/main.py").exists()
+    assert not (dst_path / "renovate.json").exists()
     assert _git("rev-parse", "--is-inside-work-tree", cwd=dst_path) == "true"
     assert _git("rev-parse", "HEAD", cwd=dst_path) == original_head
