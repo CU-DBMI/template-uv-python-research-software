@@ -20,9 +20,9 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v8.0.0
+        uses: astral-sh/setup-uv@v8.1.0
       # use prek for speedy precommit results
-      - uses: j178/prek-action@v2.0.1
+      - uses: j178/prek-action@v2.0.3
       # run pre-commit ci lite for automated fixes
       - uses: pre-commit-ci/lite-action@v1.1.0
         if: ${{ !cancelled() }}
@@ -42,7 +42,7 @@ jobs:
         with:
           python-version: ${{ matrix.python_version }}
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v8.0.0
+        uses: astral-sh/setup-uv@v8.1.0
       - name: Run pytest
         run: uv run --frozen pytest
 {% endraw %}
