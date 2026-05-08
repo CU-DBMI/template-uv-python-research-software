@@ -12,7 +12,8 @@ This is a [`copier`](https://github.com/copier-org/copier) template for building
 Follow these steps to use this template:
 
 1. [Install `copier`](https://copier.readthedocs.io/en/stable/#installation) (e.g. `pip install copier`).
-1. Reference this repository through the `copier copy <source> <target>` command. (e.g. `copier copy https://github.com/cu-dbmi/template-uv-python-research-software destination_path`)
+1. Reference this repository through the `copier copy <source> <target>` command. (e.g. `copier copy --vcs-ref=HEAD https://github.com/cu-dbmi/template-uv-python-research-software destination_path`)
+   If you still see stale content, clear Copier's cache (`rm -rf ~/.cache/copier`) and run the command again.
 1. Follow the directions in your new repo's `README.md` and make sure to check each file for alignment with your project.
 1. Enjoy!
 
