@@ -33,3 +33,14 @@ updates:
       python-packages:
         patterns:
           - "*"
+
+  # Perform checks and updates for pre-commit hook versions.
+  - package-ecosystem: "pre-commit"
+    directory: "/"
+    schedule:
+      # Check for updates to pre-commit hooks every month
+      interval: "monthly"
+    groups:
+      pre-commit-hooks:
+        patterns:
+          - "*"
