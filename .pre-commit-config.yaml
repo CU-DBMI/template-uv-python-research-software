@@ -51,6 +51,13 @@ repos:
     rev: 'v2.16'
     hooks:
     -   id: vulture
+-   repo: local
+    hooks:
+    -   id: ty
+        name: ty
+        entry: uvx ty check tests
+        language: system
+        files: ^tests/.*\.py$
 -   repo: https://github.com/aristanetworks/j2lint
     rev: "v1.2.0"
     hooks:

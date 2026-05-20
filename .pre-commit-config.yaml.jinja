@@ -51,3 +51,10 @@ repos:
     rev: 'v2.14'
     hooks:
     -   id: vulture
+-   repo: local
+    hooks:
+    -   id: ty
+        name: ty
+        entry: uvx ty check
+        language: system
+        files: ^(src|tests)/.*\.py$

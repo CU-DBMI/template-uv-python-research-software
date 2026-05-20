@@ -24,7 +24,9 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+  "coverage[toml]>=7.10.6",
   "pytest>=9.0.3",
+  "pytest-cov>=6.2.1",
 ]
 
 [tool.ruff]
@@ -59,6 +61,17 @@ lint.per-file-ignores."__init__.py" = [ "F401" ]
 
 [tool.pytest]
 ini_options.pythonpath = [ "." ]
+ini_options.addopts = [
+  "--cov=tests",
+  "--cov-report=term-missing",
+  "--cov-report=xml",
+]
+
+[tool.coverage]
+run.branch = true
+run.source = [ "tests" ]
+report.show_missing = true
+report.skip_covered = true
 
 [tool.vulture]
 min_confidence = 90

@@ -29,6 +29,8 @@ scripts.{{ project_name }} = "{{ python_package_name }}.cli:trigger"
 dev = [
   "poethepoet>=0.34",
   "pytest>=8.3.5",
+  "pytest-cov>=6.2.1",
+  "coverage[toml]>=7.10.6",
 ]
 docs = [
   "myst-nb>=1.2",
@@ -81,6 +83,19 @@ lint.per-file-ignores."__init__.py" = [ "F401" ]
 
 [tool.pytest.ini_options]
 pythonpath = [ "." ]
+addopts = [
+  "--cov={{ python_package_name }}",
+  "--cov-report=term-missing",
+  "--cov-report=xml",
+]
+
+[tool.coverage.run]
+branch = true
+source = [ "src/{{ python_package_name }}" ]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
 
 [tool.poe.tasks]
 # tasks for development environments
