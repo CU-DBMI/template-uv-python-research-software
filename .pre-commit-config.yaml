@@ -55,9 +55,10 @@ repos:
     hooks:
     -   id: ty
         name: ty
-        entry: uvx ty check tests
+        entry: uv run --frozen ty check
         language: system
-        files: ^tests/.*\.py$
+        files: ^(src|tests)/.*\.py$
+        exclude: ^src/\{\{\ python_package_name\ \}\}/__init__\.py$
 -   repo: https://github.com/aristanetworks/j2lint
     rev: "v1.2.0"
     hooks:

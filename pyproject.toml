@@ -25,6 +25,7 @@ dependencies = [
 [dependency-groups]
 dev = [
   "coverage[toml]>=7.10.6",
+  "pandas>=2.2.3",
   "pytest>=9.0.3",
   "pytest-cov>=6.2.1",
 ]
