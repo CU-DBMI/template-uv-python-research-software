@@ -55,6 +55,6 @@ repos:
     hooks:
     -   id: ty
         name: ty
-        entry: uv run --frozen ty check
+        entry: uv run --frozen --with ty ty check
         language: system
         files: ^(src|tests)/.*\.py$
