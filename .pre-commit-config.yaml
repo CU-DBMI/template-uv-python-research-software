@@ -51,6 +51,14 @@ repos:
     rev: 'v2.16'
     hooks:
     -   id: vulture
+-   repo: local
+    hooks:
+    -   id: ty
+        name: ty
+        entry: uv run --frozen --with ty ty check
+        language: system
+        files: ^(src|tests)/.*\.py$
+        exclude: ^src/\{\{\ python_package_name\ \}\}/__init__\.py$
 -   repo: https://github.com/aristanetworks/j2lint
     rev: "v1.2.0"
     hooks:
