@@ -33,6 +33,10 @@ repos:
     -   id: mdformat
         additional_dependencies:
         -   mdformat-gfm
+-   repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.18.1
+    hooks:
+    -   id: markdownlint-cli2
 -   repo: https://github.com/adrienverge/yamllint
     rev: v1.38.0
     hooks:

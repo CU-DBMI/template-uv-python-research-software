@@ -7,12 +7,37 @@
 
 This is a [`copier`](https://github.com/copier-org/copier) template for building Python research software through the `uv` environment manager.
 
+## High-level overview
+
+Projects generated from this template include:
+
+- `uv`-managed environments and dependencies
+- Testing and coverage defaults via `pytest` + `coverage.py`
+- Pre-commit automation for formatting, linting, and type checks
+- GitHub Actions workflows for linting, tests, docs, and release-related automation
+- Starter package + CLI scaffold under `src/`
+- Documentation scaffold under `docs/`
+- Poe task entrypoints for common local workflows (including a full local pipeline task)
+
+## Included agent skills
+
+Generated projects include agent guidance in `.agents/skills/` with common skills for:
+
+- Test-driven development
+- Incremental implementation
+- Code review and quality checks
+- CI/CD and automation workflow alignment
+- Debugging and error recovery
+- Optional learning exercises for comprehension (`learning-opportunities`)
+
+If you do not want to use local agent guidance in your project, remove `AGENTS.md` and the `.agents/` directory.
+
 ## Using this template
 
 Follow these steps to use this template:
 
 1. [Install `copier`](https://copier.readthedocs.io/en/stable/#installation) (e.g. `pip install copier`).
-1. Reference this repository through the `copier copy <source> <target>` command. (e.g. `copier copy --vcs-ref=HEAD https://github.com/cu-dbmi/template-uv-python-research-software destination_path`)
+1. Reference this repository through the `copier copy <source> <target>` command. (e.g. `uvx copier copy --vcs-ref=HEAD https://github.com/cu-dbmi/template-uv-python-research-software destination_path`)
    If you still see stale content, clear Copier's cache (`rm -rf ~/.cache/copier`) and run the command again.
 1. Follow the directions in your new repo's `README.md` and make sure to check each file for alignment with your project.
 1. Enjoy!

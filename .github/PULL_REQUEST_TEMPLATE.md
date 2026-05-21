@@ -24,7 +24,7 @@ Pre-commit checks will automatically run as part of opening this pull request an
 - [ ] Enhancement (adds functionality).
 - [ ] Breaking change (these changes would cause existing functionality to not work as expected).
 
-# Checklist
+## Checklist
 
 Please ensure that all boxes are checked before indicating that this pull request is ready for review.
 

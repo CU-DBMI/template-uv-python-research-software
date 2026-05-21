@@ -102,6 +102,13 @@ skip_covered = true
 test.shell = """
 pytest
 """
+lint.shell = """
+pre-commit run --all-files
+"""
+pipeline.shell = """
+pre-commit run --all-files
+pytest
+"""
 jupyter.shell = """
 jupyter lab
 """
