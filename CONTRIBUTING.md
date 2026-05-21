@@ -57,7 +57,7 @@ We welcome anyone to use [GitHub issues](https://docs.github.com/en/issues/track
 
 Specifically, there are several ways to suggest or make changes to this repository:
 
-1. Open a GitHub issue: https://github.com/CU-DBMI/template-uv-python-research-software/issues
+1. Open a [GitHub issue](https://github.com/CU-DBMI/template-uv-python-research-software/issues)
 1. Create a pull request from a forked branch of the repository
 
 ### Creating a pull request
@@ -93,7 +93,7 @@ Versioning for the project is intended to align with GitHub Releases which provi
 
 ### Releases
 
-We publish source code by using [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) available [here](https://github.com/CU-DBMI/template-uv-python-research-software/releases).
+We publish source code by using [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) available in the [template-uv-python-research-software releases page](https://github.com/CU-DBMI/template-uv-python-research-software/releases).
 
 #### Release Publishing Process
 
