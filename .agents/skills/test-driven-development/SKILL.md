@@ -1,7 +1,6 @@
----
-name: test-driven-development
-description: Drives development with tests first. Use when implementing logic, fixing bugs, or changing behavior that must be proven.
----
+______________________________________________________________________
+
+## name: test-driven-development description: Drives development with tests first. Use when implementing logic, fixing bugs, or changing behavior that must be proven.
 
 # Test-Driven Development
 
@@ -18,18 +17,18 @@ Write a failing test before writing code that makes it pass. For bug fixes, repr
 ## Red-Green-Refactor
 
 1. Define expected behavior first.
-2. Write a failing test (RED).
-3. Implement the smallest change to pass (GREEN).
-4. Clean up without changing behavior (REFACTOR).
-5. Re-run tests after each meaningful change.
+1. Write a failing test (RED).
+1. Implement the smallest change to pass (GREEN).
+1. Clean up without changing behavior (REFACTOR).
+1. Re-run tests after each meaningful change.
 
 ## Prove-it pattern for bugs
 
 1. Reproduce the bug with a test.
-2. Confirm the test fails.
-3. Implement the fix.
-4. Confirm the test passes.
-5. Run broader tests to check for regressions.
+1. Confirm the test fails.
+1. Implement the fix.
+1. Confirm the test passes.
+1. Run broader tests to check for regressions.
 
 ## Rules
 

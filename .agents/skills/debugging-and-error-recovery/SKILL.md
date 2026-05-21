@@ -1,7 +1,6 @@
----
-name: debugging-and-error-recovery
-description: Systematic debugging workflow for failing tests, CI breakages, and runtime errors. Use when behavior is unexpected or a check fails.
----
+______________________________________________________________________
+
+## name: debugging-and-error-recovery description: Systematic debugging workflow for failing tests, CI breakages, and runtime errors. Use when behavior is unexpected or a check fails.
 
 # Debugging and Error Recovery
 
@@ -19,11 +18,11 @@ Use a disciplined triage loop: reproduce, localize, reduce, fix, and guard again
 ## Workflow
 
 1. Reproduce the issue with the smallest reliable command.
-2. Localize failure to a file, function, or boundary.
-3. Reduce to the minimal failing case.
-4. Implement the smallest safe fix.
-5. Add or update tests to prevent recurrence.
-6. Re-run relevant checks, then broader validation.
+1. Localize failure to a file, function, or boundary.
+1. Reduce to the minimal failing case.
+1. Implement the smallest safe fix.
+1. Add or update tests to prevent recurrence.
+1. Re-run relevant checks, then broader validation.
 
 ## Rules
 

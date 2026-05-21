@@ -1,7 +1,6 @@
----
-name: incremental-implementation
-description: Delivers changes in thin, verifiable slices. Use when a task spans multiple files or feels too large for one safe change.
----
+______________________________________________________________________
+
+## name: incremental-implementation description: Delivers changes in thin, verifiable slices. Use when a task spans multiple files or feels too large for one safe change.
 
 # Incremental Implementation
 
@@ -18,10 +17,10 @@ Build in small vertical slices: implement, test, verify, then continue. Each inc
 ## Increment cycle
 
 1. Implement the smallest complete slice.
-2. Run relevant tests and checks.
-3. Verify behavior manually if needed.
-4. Commit or checkpoint.
-5. Move to the next slice.
+1. Run relevant tests and checks.
+1. Verify behavior manually if needed.
+1. Commit or checkpoint.
+1. Move to the next slice.
 
 ## Rules
 

@@ -1,11 +1,6 @@
----
-name: learning-opportunities
-description: Facilitates deliberate skill development during AI-assisted coding. Offers interactive learning exercises after architectural work (new files, schema changes, refactors). Use when completing features, making design decisions, or when user asks to understand code better.
-argument-hint: "[orient]"
-license: CC-BY-4.0
-source: "Adapted from DrCatHicks/learning-opportunities"
-source_url: "https://github.com/DrCatHicks/learning-opportunities/tree/main/learning-opportunities"
----
+______________________________________________________________________
+
+## name: learning-opportunities description: Facilitates deliberate skill development during AI-assisted coding. Offers interactive learning exercises after architectural work (new files, schema changes, refactors). Use when completing features, making design decisions, or when user asks to understand code better. argument-hint: "[orient]" license: CC-BY-4.0 source: "Adapted from DrCatHicks/learning-opportunities" source_url: "https://github.com/DrCatHicks/learning-opportunities/tree/main/learning-opportunities"
 
 # Learning Opportunities
 
@@ -53,55 +48,55 @@ Allowed after the question:
 Pause pattern:
 
 1. Pose a specific question or task.
-2. Wait for the user's response.
-3. Provide feedback connected to actual behavior.
-4. If prediction was wrong, clearly identify what was incorrect and explore the gap.
-5. Do not attribute insights the user did not express.
+1. Wait for the user's response.
+1. Provide feedback connected to actual behavior.
+1. If prediction was wrong, clearly identify what was incorrect and explore the gap.
+1. Do not attribute insights the user did not express.
 
 ## Exercise types
 
 ### Prediction -> Observation -> Reflection
 
 1. Pause with a concrete prediction question.
-2. Wait.
-3. Walk through actual behavior.
-4. Pause for reflection on surprise and match.
+1. Wait.
+1. Walk through actual behavior.
+1. Pause for reflection on surprise and match.
 
 ### Generation -> Comparison
 
 1. Ask user to sketch approach before showing implementation.
-2. Wait.
-3. Show actual implementation.
-4. Compare and discuss rationale.
+1. Wait.
+1. Show actual implementation.
+1. Compare and discuss rationale.
 
 ### Trace the path
 
 1. Use concrete values.
-2. Pause at each decision point.
-3. Wait before revealing each step.
-4. Continue through full path.
+1. Pause at each decision point.
+1. Wait before revealing each step.
+1. Continue through full path.
 
 ### Debug this
 
 1. Present plausible bug or edge case.
-2. Pause: what breaks and why.
-3. Wait.
-4. Pause: how to fix.
-5. Discuss approach.
+1. Pause: what breaks and why.
+1. Wait.
+1. Pause: how to fix.
+1. Discuss approach.
 
 ### Teach it back
 
 1. Ask user to explain a component as if onboarding a new developer.
-2. Wait.
-3. Provide targeted feedback.
+1. Wait.
+1. Provide targeted feedback.
 
 ### Retrieval check-in
 
 At start of returning sessions:
 
 1. Ask what they remember about a prior component/scenario.
-2. Wait.
-3. Fill gaps or confirm.
+1. Wait.
+1. Fill gaps or confirm.
 
 ## Facilitation guidelines
 
@@ -125,10 +120,10 @@ If invoked with `orient`, run a guided repo orientation exercise instead of the 
 Look for `resources/orientation.md` in this order:
 
 1. `.agents/skills/learning-opportunities/resources/orientation.md`
-2. `~/.agents/skills/learning-opportunities/resources/orientation.md`
-3. `.codex/skills/learning-opportunities/resources/orientation.md`
-4. `~/.codex/skills/learning-opportunities/resources/orientation.md`
-5. `.claude/skills/learning-opportunities/resources/orientation.md`
-6. `~/.claude/skills/learning-opportunities/resources/orientation.md`
+1. `~/.agents/skills/learning-opportunities/resources/orientation.md`
+1. `.codex/skills/learning-opportunities/resources/orientation.md`
+1. `~/.codex/skills/learning-opportunities/resources/orientation.md`
+1. `.claude/skills/learning-opportunities/resources/orientation.md`
+1. `~/.claude/skills/learning-opportunities/resources/orientation.md`
 
 If no orientation file is found, stop and ask the user to generate one first.

@@ -23,11 +23,11 @@ This repository includes local agent guidance in `.agents/skills/`.
 ## Default execution order
 
 1. Apply `test-driven-development` when behavior changes.
-2. Apply `incremental-implementation` for multi-file or higher-risk changes.
-3. Apply `code-review-and-quality` as the final quality gate before completion.
-4. Apply `ci-cd-and-automation` when changing checks, tasks, or pipelines.
-5. Apply `debugging-and-error-recovery` when tests, CI, or runtime behavior fails unexpectedly.
-6. Optionally apply `learning-opportunities` for 10-15 minute learning exercises after design-heavy work.
+1. Apply `incremental-implementation` for multi-file or higher-risk changes.
+1. Apply `code-review-and-quality` as the final quality gate before completion.
+1. Apply `ci-cd-and-automation` when changing checks, tasks, or pipelines.
+1. Apply `debugging-and-error-recovery` when tests, CI, or runtime behavior fails unexpectedly.
+1. Optionally apply `learning-opportunities` for 10-15 minute learning exercises after design-heavy work.
 
 ## Local commands
 

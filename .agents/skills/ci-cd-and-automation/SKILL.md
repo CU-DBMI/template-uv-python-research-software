@@ -1,7 +1,6 @@
----
-name: ci-cd-and-automation
-description: Keeps delivery workflows automated and repeatable. Use when adding checks, changing pipelines, or improving contributor onboarding.
----
+______________________________________________________________________
+
+## name: ci-cd-and-automation description: Keeps delivery workflows automated and repeatable. Use when adding checks, changing pipelines, or improving contributor onboarding.
 
 # CI/CD and Automation
 
@@ -25,8 +24,8 @@ Prefer one-command local pipelines and CI parity so contributors can validate ch
 ## Change checklist
 
 1. Update `pyproject.toml` Poe tasks when checks change.
-2. Keep GitHub Actions and local tasks aligned.
-3. Verify full local pipeline before completion.
+1. Keep GitHub Actions and local tasks aligned.
+1. Verify full local pipeline before completion.
 
 ## Verification
 

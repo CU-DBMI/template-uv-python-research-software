@@ -1,7 +1,6 @@
----
-name: code-review-and-quality
-description: Runs a multi-axis quality review before merge. Use after implementation and before considering work complete.
----
+______________________________________________________________________
+
+## name: code-review-and-quality description: Runs a multi-axis quality review before merge. Use after implementation and before considering work complete.
 
 # Code Review and Quality
 
@@ -12,10 +11,10 @@ Every non-trivial change should be reviewed across correctness, readability, arc
 ## Five-axis review
 
 1. Correctness: does behavior match requirements and edge cases?
-2. Readability: is intent clear and maintainable?
-3. Architecture: are boundaries and abstractions appropriate?
-4. Security: are inputs validated and risky paths handled safely?
-5. Performance: any obvious regressions or expensive paths?
+1. Readability: is intent clear and maintainable?
+1. Architecture: are boundaries and abstractions appropriate?
+1. Security: are inputs validated and risky paths handled safely?
+1. Performance: any obvious regressions or expensive paths?
 
 ## Rules
 
