@@ -42,6 +42,14 @@ github_url:
     This will be used in the package metadata
     and other places.
 
+github_primary_reviewer:
+  type: str
+  default: "@your-github-handle"
+  help: >-
+    Primary GitHub reviewer handle for CODEOWNERS
+    (for example: @octocat). This is used to route
+    default review requests on pull requests.
+
 _exclude:
   - .git
   - .DS_Store
