@@ -45,6 +45,14 @@ notebooks = [
   "jupytext>=1.17.1",
 ]
 
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = [ "src" ]
+include = [ "{{ python_package_name }}*" ]
+
 [tool.setuptools_scm]
 root = "."
 version_scheme = "no-guess-dev"
