@@ -27,6 +27,7 @@ jobs:
       - uses: pre-commit-ci/lite-action@v1.1.0
         if: ${{ !cancelled() }}
   run_tests:
+    needs: pre_commit_checks
     strategy:
       matrix:
         python_version: ["3.11", "3.12", "3.13", "3.14"]

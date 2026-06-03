@@ -114,8 +114,7 @@ lint.shell = """
 pre-commit run --all-files
 """
 pipeline.shell = """
-pre-commit run --all-files
-pytest
+pre-commit run --all-files && pytest
 """
 jupyter.shell = """
 jupyter lab
