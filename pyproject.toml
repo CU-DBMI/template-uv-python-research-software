@@ -4,7 +4,6 @@ requires = [ "setuptools>=82.0.1", "setuptools-scm>=10.0.5" ]
 
 [project]
 name = "template-uv-python-research-software"
-version = "0.0.1"
 description = "A template for Pythonic research software with environment management through uv."
 readme = "README.md"
 authors = [
@@ -18,6 +17,7 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
 ]
+dynamic = [ "version" ]
 dependencies = [
   "copier>=9.15.1",
 ]
