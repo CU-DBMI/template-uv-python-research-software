@@ -24,6 +24,16 @@ def _init_git_repo(path: Path) -> str:
     return _git("rev-parse", "HEAD", cwd=path)
 
 
+def _commit_project(path: Path) -> None:
+    subprocess.run(["git", "init"], cwd=path, check=True)
+    subprocess.run(["git", "config", "user.name", "Test User"], cwd=path, check=True)
+    subprocess.run(
+        ["git", "config", "user.email", "test@example.com"], cwd=path, check=True
+    )
+    subprocess.run(["git", "add", "."], cwd=path, check=True)
+    subprocess.run(["git", "commit", "-m", "Initial commit"], cwd=path, check=True)
+
+
 def test_template(tmp_path: Path) -> None:
     # Path to the Copier template root
     template_path = Path(__file__).resolve().parent.parent
@@ -52,6 +62,8 @@ def test_template(tmp_path: Path) -> None:
     assert (dst_path / "src/demo_project/main.py").exists()
     assert not (dst_path / ".git").exists()
     assert not (dst_path / "renovate.json").exists()
+
+    _commit_project(dst_path)
 
     # Run pytest from the copied template
     subprocess.run(["uv", "run", "pytest"], cwd=dst_path, check=True)
