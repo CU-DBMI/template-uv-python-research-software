@@ -666,7 +666,6 @@ wheels = [
 
 [[package]]
 name = "template-uv-python-research-software"
-version = "0.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "copier" },
@@ -685,7 +684,7 @@ requires-dist = [{ name = "copier", specifier = ">=9.15.1" }]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "coverage", extras = ["toml"], specifier = ">=7.14.0" },
+    { name = "coverage", extras = ["toml"], specifier = ">=7.14" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pytest", specifier = ">=9.0.3" },
     { name = "pytest-cov", specifier = ">=6.2.1" },
