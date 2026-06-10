@@ -34,7 +34,7 @@ references:
   - type: software
     title: "learning-opportunities"
     authors:
-      - given-names: Dan
+      - given-names: Cat
         family-names: Hicks
     repository-code: "https://github.com/DrCatHicks/learning-opportunities"
     license: CC-BY-4.0
