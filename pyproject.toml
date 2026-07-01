@@ -1,6 +1,6 @@
 [build-system]
 build-backend = "setuptools.build_meta"
-requires = [ "setuptools>=82.0.1", "setuptools-scm>=10.0.5" ]
+requires = [ "setuptools>=82.0.1", "setuptools-scm>=10.1.2" ]
 
 [project]
 name = "template-uv-python-research-software"
@@ -19,14 +19,14 @@ classifiers = [
 ]
 dynamic = [ "version" ]
 dependencies = [
-  "copier>=9.15.1",
+  "copier>=9.16.0",
 ]
 
 [dependency-groups]
 dev = [
-  "coverage[toml]>=7.14",
+  "coverage[toml]>=7.14.3",
   "pandas>=2.2.3",
-  "pytest>=9.0.3",
+  "pytest>=9.1.1",
   "pytest-cov>=6.2.1",
 ]
 
