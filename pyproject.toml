@@ -60,6 +60,10 @@ lint.select = [
 # Ignore `F401` (unused imports) for `__init__.py` file
 lint.per-file-ignores."__init__.py" = [ "F401" ]
 
+[tool.vulture]
+paths = [ "src/{{ python_package_name }}", "tests" ]
+min_confidence = 90
+
 [tool.pytest]
 ini_options.pythonpath = [ "." ]
 ini_options.addopts = [
@@ -73,7 +77,3 @@ run.branch = true
 run.source = [ "tests" ]
 report.show_missing = true
 report.skip_covered = true
-
-[tool.vulture]
-min_confidence = 90
-paths = [ "src/{{ python_package_name }}", "tests" ]
