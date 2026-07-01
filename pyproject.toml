@@ -19,7 +19,7 @@ classifiers = [
 ]
 dynamic = [ "version" ]
 dependencies = [
-  "copier>=9.16.0",
+  "copier>=9.16",
 ]
 
 [dependency-groups]
