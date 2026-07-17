@@ -8,12 +8,19 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   pre_commit_checks:
+    permissions:
+      contents: write
     runs-on: ubuntu-24.04
     steps:
       # checks out the repo
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       # run pre-commit
       - name: Python setup
         uses: actions/setup-python@v6.3.0
@@ -38,6 +45,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - name: Python setup
         uses: actions/setup-python@v6.3.0
         with:

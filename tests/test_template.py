@@ -60,6 +60,11 @@ def test_template(tmp_path: Path) -> None:
 
     # Assert a file from the template was created
     assert (dst_path / "src/demo_project/main.py").exists()
+    assert (
+        "zizmorcore/zizmor-pre-commit"
+        in (dst_path / ".pre-commit-config.yaml").read_text()
+    )
+    assert (dst_path / ".github/zizmor.yml").exists()
     assert not (dst_path / ".git").exists()
     assert not (dst_path / "renovate.json").exists()
 
