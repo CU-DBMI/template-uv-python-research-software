@@ -26,6 +26,8 @@ dependencies = [
 dev = [
   "coverage[toml]>=7.15.2",
   "pandas>=3.0.5",
+  "poethepoet>=0.37",
+  "prek>=0.2",
   "pytest>=9.1.1",
   "pytest-cov>=6.2.1",
 ]
@@ -77,3 +79,8 @@ run.branch = true
 run.source = [ "tests" ]
 report.show_missing = true
 report.skip_covered = true
+
+[tool.poe]
+tasks.test.shell = "pytest"
+tasks.lint.shell = "prek run --all-files"
+tasks.pipeline.shell = "prek run --all-files && pytest"

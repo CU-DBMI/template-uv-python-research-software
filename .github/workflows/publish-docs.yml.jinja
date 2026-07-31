@@ -34,7 +34,7 @@ jobs:
         with:
           enable-cache: false
 {% endraw %}
-{%- if use_rust %}
+{% if use_rust %}
       # uv syncs (and builds the native extension) during the docs build
       - name: Rust setup
         uses: dtolnay/rust-toolchain@stable

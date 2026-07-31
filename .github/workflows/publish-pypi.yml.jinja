@@ -1,7 +1,7 @@
 ---
 # used for publishing packages to pypi on release
 name: publish pypi release
-{% if use_rust %}{% raw %}
+{% if use_rust %}
 on:
   release:
     types:
@@ -15,8 +15,8 @@ jobs:
   # CPython's stable ABI (abi3-py311), a single wheel per platform serves every
   # supported Python version, so there is no per-interpreter build matrix.
   build_wheels:
-    name: wheel (${{ matrix.target }} on ${{ matrix.runner }})
-    runs-on: ${{ matrix.runner }}
+    name: wheel ({{ '${{ matrix.target }}' }} on {{ '${{ matrix.runner }}' }})
+    runs-on: {{ '${{ matrix.runner }}' }}
     permissions:
       contents: read
     strategy:
@@ -46,19 +46,19 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
       - name: Sync package version from release tag
         env:
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_TAG: {{ '${{ github.event.release.tag_name }}' }}
         shell: bash
         run: python tools/sync_release_version.py "$RELEASE_TAG"
       - name: Build wheel
         uses: PyO3/maturin-action@v1
         with:
-          target: ${{ matrix.target }}
+          target: {{ '${{ matrix.target }}' }}
           args: --release --out dist
           manylinux: auto
       - name: Upload wheel
         uses: actions/upload-artifact@v7
         with:
-          name: wheels-${{ matrix.runner }}-${{ matrix.target }}
+          name: wheels-{{ '${{ matrix.runner }}' }}-{{ '${{ matrix.target }}' }}
           path: dist/*.whl
           if-no-files-found: error
 
@@ -80,7 +80,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
       - name: Sync package version from release tag
         env:
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_TAG: {{ '${{ github.event.release.tag_name }}' }}
         shell: bash
         run: python tools/sync_release_version.py "$RELEASE_TAG"
       - name: Build source distribution
@@ -114,7 +114,7 @@ jobs:
           merge-multiple: true
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@v1.14.0
-{% endraw %}{% else %}
+{% else %}
 
 on:
   release:

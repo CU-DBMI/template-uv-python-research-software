@@ -10,7 +10,6 @@ requires = [ "setuptools>=64", "setuptools-scm>=8" ]
 
 [project]
 name = "{{ project_name }}"
-dynamic = [ "version" ]
 description = "{{ project_description }}"
 readme = "README.md"
 authors = [
@@ -22,15 +21,15 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
-  "Programming Language :: Python :: 3.14",
 ]
+dynamic = [ "version" ]
 dependencies = [
 {% if use_rust %}
-  "fire>=0.7.0",
+  "fire>=0.7",
 {% else %}
-  "pandas>=2.2.3",
-  "fire>=0.7.0",
+  "fire>=0.7",
   "jinja2>=3.1.6",
+  "pandas>=2.2.3",
 {% endif %}
 ]
 scripts.{{ project_name }} = "{{ python_package_name }}.cli:trigger"
@@ -44,10 +43,10 @@ dev = [
   "pytest>=8.3.5",
   "pytest-cov>=6.2.1",
 {% else %}
+  "coverage[toml]>=7.10.6",
   "poethepoet>=0.34",
   "pytest>=8.3.5",
   "pytest-cov>=6.2.1",
-  "coverage[toml]>=7.10.6",
 {% endif %}
 ]
 docs = [

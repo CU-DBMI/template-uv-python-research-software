@@ -27,7 +27,7 @@ def test_show_message_cli(my_data: str) -> None:
     """
 
     output = subprocess.run(
-        ["uv", "run", "{{ project_name }}", "show_message", f"--message='Hello terminal!'"],
+        ["uv", "run", "{{ project_name }}", "show_message", "--message='Hello terminal!'"],
         capture_output=True,
         text=True,
         check=True,

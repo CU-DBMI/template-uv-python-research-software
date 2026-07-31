@@ -81,8 +81,10 @@ def test_template(tmp_path: Path) -> None:
 
     _commit_project(dst_path)
 
-    # Run pytest from the copied template
-    subprocess.run(["uv", "run", "pytest"], cwd=dst_path, check=True)
+    # Run the generated project's full local pipeline.
+    subprocess.run(
+        ["uv", "run", "--frozen", "poe", "pipeline"], cwd=dst_path, check=True
+    )
 
 
 def test_template_rust(tmp_path: Path) -> None:
@@ -113,10 +115,10 @@ def test_template_rust(tmp_path: Path) -> None:
 
     _commit_project(dst_path)
 
-    # The Rust unit tests, native build, and Python tests must all pass
-    subprocess.run(["cargo", "test"], cwd=dst_path, check=True)
-    subprocess.run(["uv", "run", "maturin", "develop"], cwd=dst_path, check=True)
-    subprocess.run(["uv", "run", "pytest"], cwd=dst_path, check=True)
+    # The generated Rust project's full local pipeline must pass.
+    subprocess.run(
+        ["uv", "run", "--frozen", "poe", "pipeline"], cwd=dst_path, check=True
+    )
 
 
 def test_template_preserves_existing_git_repo(tmp_path: Path) -> None:
