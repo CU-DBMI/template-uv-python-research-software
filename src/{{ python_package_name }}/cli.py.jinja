@@ -4,6 +4,41 @@ CLI for {{ python_package_name }}
 
 import fire
 
+{% if use_rust %}
+from {{ python_package_name }}.api import count_primes, sum_primes
+
+
+class {{ python_package_name }}CLI:
+    def sum_primes(
+        self,
+        limit: int = 1000,
+    ) -> None:
+        """
+        CLI interface for sum_primes.
+
+        Args:
+            limit (int):
+                Exclusive upper bound. Defaults to 1000.
+        """
+
+        # prints the sum of primes below limit to screen
+        print(sum_primes(limit=limit))
+
+    def count_primes(
+        self,
+        limit: int = 1000,
+    ) -> None:
+        """
+        CLI interface for count_primes.
+
+        Args:
+            limit (int):
+                Exclusive upper bound. Defaults to 1000.
+        """
+
+        # prints the count of primes below limit to screen
+        print(count_primes(limit=limit))
+{% else %}
 from {{ python_package_name }}.main import show_message
 
 
@@ -27,6 +62,7 @@ class {{ python_package_name }}CLI:
 
         # prints the message to screen
         print(show_message(message=message))
+{% endif %}
 
 
 def trigger() -> None:

@@ -2,6 +2,36 @@
 Tests for the main module.
 """
 
+{% if use_rust %}
+from {{ python_package_name }} import count_primes, sum_primes
+
+# primes strictly below 10
+PRIMES_BELOW_10 = [2, 3, 5, 7]
+
+
+def test_sum_primes(my_data: int) -> None:
+    """
+    Test the sum_primes function.
+    """
+
+    expected_sum = sum(PRIMES_BELOW_10)
+    assert sum_primes(10) == expected_sum
+    assert sum_primes(0) == 0
+    # the my_data fixture is 10, so the sum matches expected_sum
+    assert sum_primes(my_data) == expected_sum
+
+
+def test_count_primes(my_data: int) -> None:
+    """
+    Test the count_primes function.
+    """
+
+    expected_count = len(PRIMES_BELOW_10)
+    assert count_primes(10) == expected_count
+    assert count_primes(2) == 0
+    # the my_data fixture is 10, so the count matches expected_count
+    assert count_primes(my_data) == expected_count
+{% else %}
 from {{ python_package_name }}.main import show_message
 
 
@@ -18,3 +48,4 @@ def test_show_message(my_data: str) -> None:
     result = show_message(my_data)
     assert result.shape == (1, 1)
     assert result.iloc[0, 0] == my_data
+{% endif %}

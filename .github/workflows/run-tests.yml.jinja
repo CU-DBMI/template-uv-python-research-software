@@ -53,6 +53,24 @@ jobs:
           python-version: ${{ matrix.python_version }}
       - name: Install the latest version of uv
         uses: astral-sh/setup-uv@v8.3.2
+{% endraw %}
+{%- if use_rust %}
+      - name: Rust setup
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      # format-check, lint, and unit-test the Rust code
+      - name: Rust lint and test
+        run: |
+          cargo fmt --all -- --check
+          cargo clippy --all-targets -- -D warnings
+          cargo test
+      # build the native extension, then run the Python tests
+      - name: Python tests
+        run: |
+          uv run --frozen maturin develop
+          uv run --frozen pytest
+{% else %}
       - name: Run pytest
         run: uv run --frozen pytest
-{% endraw %}
+{% endif %}

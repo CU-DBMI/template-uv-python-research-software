@@ -24,6 +24,9 @@ Perform the following steps to setup a Python development environment.
 
 1. [Install Python](https://www.python.org/downloads/) (we recommend using [`pyenv`](https://github.com/pyenv/pyenv) or similar)
 1. [Install uv](https://docs.astral.sh/uv/getting-started/installation/)
+{% if use_rust %}
+1. [Install Rust](https://www.rust-lang.org/tools/install) (needed to build the native extension)
+{% endif %}
 
 ### Linting
 
@@ -47,9 +50,19 @@ We recommend testing your work before opening pull requests with proposed change
 
 You can run pytest on your work using the following example:
 
+{% if use_rust %}
+```sh
+# build the native extension into your environment, then run the tests
+% uv run maturin develop
+% uv run pytest
+```
+
+You can also run the Rust unit tests directly with `cargo test`, or run everything at once (Rust tests, native build, linting, and Python tests) with `uv run poe pipeline`.
+{% else %}
 ```sh
 % uv run pytest
 ```
+{% endif %}
 
 ## Making changes to this repository
 
@@ -84,12 +97,21 @@ We will check for accuracy, style, code coverage, and scope.
 
 ## Versioning
 
+{% if use_rust %}
+We version this software through [`PEP 440`](https://peps.python.org/pep-0440/) standards and [semver.org](https://semver.org/) standards.
+Versioning for the project is intended to align with GitHub Releases which provide `git` tag capabilities.
+
+Because this project ships a compiled Rust extension, it is built with [maturin](https://www.maturin.rs/), which reads the package version from the Cargo workspace (`Cargo.toml`) rather than dynamically from `git`.
+To keep releases aligned with `git` tags, the `tools/sync_release_version.py` script rewrites the workspace `version` from the release tag at publish time (run automatically by `publish-pypi.yml`), so a tagged release of `vX.Y.Z` produces a wheel versioned `X.Y.Z`.
+Between releases the workspace version stays at its last-set value, and you can verify a tag matches the workspace with `python tools/sync_release_version.py vX.Y.Z --check`.
+{% else %}
 We use [`setuptools-scm`](https://github.com/pypa/setuptools-scm) to help version this software through [`PEP 440`](https://peps.python.org/pep-0440/) standards and [semver.org](https://semver.org/) standards.
 Configuration for versioning is found within the `pyproject.toml` file.
 All builds for packages include dynamic version data to help label distinct versions of the software.
 `setuptools-scm` uses `git` tags to help distinguish version data.
 We also use the `_version.py` file as a place to persist the version data for occaissions where the `git` history is unavailable or unwanted (this file is only present in package builds).
 Versioning for the project is intended to align with GitHub Releases which provide `git` tag capabilities.
+{% endif %}
 
 ### Releases
 
@@ -100,14 +122,18 @@ We publish source code by using [GitHub Releases](https://docs.github.com/en/rep
 Several manual and automated steps are involved with publishing releases.
 See below for an overview of how this works.
 
+{% if use_rust %}
+Notes about [semantic version](https://en.wikipedia.org/wiki/Software_versioning#Semantic_versioning) (semver) specifications: version specifications are derived from [git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging); a release tag is stamped into the Cargo workspace by `tools/sync_release_version.py` and read back by maturin at build time.
+{% else %}
 Notes about [semantic version](https://en.wikipedia.org/wiki/Software_versioning#Semantic_versioning) (semver) specifications: version specifications are controlled through [`setuptools-scm`](https://github.com/pypa/setuptools-scm) to create version data based on [git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging) and commits.
+{% endif %}
 Release git tags are automatically applied through [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) and related inferred changes from [`release-drafter`](https://github.com/release-drafter/release-drafter).
 
 1. Open a pull request and use a repository label for `release-<semver release type>` to label the pull request for visibility with [`release-drafter`](https://github.com/release-drafter/release-drafter).
 1. On merging the pull request for the release, a [GitHub Actions workflow](https://docs.github.com/en/actions/using-workflows) defined in `draft-release.yml` leveraging [`release-drafter`](https://github.com/release-drafter/release-drafter) will draft a release for maintainers.
 1. The draft GitHub release will include a version tag based on the GitHub PR label applied and `release-drafter`.
 1. Make modifications as necessary to the draft GitHub release, then publish the release (the draft release does not normally need additional modifications).
-1. On publishing the release, another GitHub Actions workflow defined in `publish-pypi.yml` will run to build and deploy the Python package to PyPI (utilizing the earlier modified `pyproject.toml` semantic version reference for labeling the release).
+1. On publishing the release, another GitHub Actions workflow defined in `publish-pypi.yml` will run to build and deploy the Python package to PyPI{% if use_rust %} (building platform wheels with maturin after `tools/sync_release_version.py` stamps the Cargo workspace version from the release tag){% else %} (utilizing the earlier modified `pyproject.toml` semantic version reference for labeling the release){% endif %}.
 
 ## Documentation
 

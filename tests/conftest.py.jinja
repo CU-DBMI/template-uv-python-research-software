@@ -5,6 +5,12 @@ conftest.py for pytest configuration.
 import pytest
 
 
+{% if use_rust %}
+@pytest.fixture
+def my_data() -> int:
+    return 10
+{% else %}
 @pytest.fixture
 def my_data() -> str:
     return "Hello, differently!"
+{% endif %}

@@ -1,0 +1,22 @@
+[package]
+name = "{{ python_package_name }}_python"
+description = "Python bindings for {{ project_name }}."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[lib]
+# Produces the native extension module imported from Python as
+# `{{ python_package_name }}._native` (see `module-name` in pyproject.toml).
+name = "_native"
+crate-type = ["cdylib"]
+
+[dependencies]
+{{ python_package_name }}_core = { path = "../{{ python_package_name }}_core" }
+# `abi3-py311` builds against CPython's stable ABI, so a single wheel per
+# platform works on Python 3.11 and every newer version -- no per-interpreter
+# build matrix, and forward compatibility with Python versions released after
+# this pyo3.
+pyo3 = { workspace = true, features = ["extension-module", "abi3-py311"] }

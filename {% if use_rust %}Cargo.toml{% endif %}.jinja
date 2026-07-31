@@ -1,0 +1,24 @@
+[workspace]
+members = [
+  "crates/{{ python_package_name }}_core",
+  "crates/{{ python_package_name }}_python",
+]
+resolver = "2"
+
+[workspace.package]
+# The workspace version is the single source of truth for the built wheel.
+#
+# Unlike the pure-Python variant of this template (which derives its version
+# dynamically from git tags via setuptools-scm), maturin reads the package
+# version from Cargo. `tools/sync_release_version.py` rewrites the line below
+# from the release tag at publish time, so a tagged release of `vX.Y.Z`
+# produces a wheel versioned `X.Y.Z`. Between releases this stays at the last
+# released value (or your chosen development version).
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+repository = "{{ github_url }}"
+rust-version = "1.82"
+
+[workspace.dependencies]
+pyo3 = "0.29"

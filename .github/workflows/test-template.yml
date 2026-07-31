@@ -53,5 +53,8 @@ jobs:
           python-version: ${{ matrix.python_version }}
       - name: Install the latest version of uv
         uses: astral-sh/setup-uv@v7
+      # Rust toolchain is required by the Rust-bindings variant render test
+      - name: Rust setup
+        uses: dtolnay/rust-toolchain@stable
       - name: Run pytest
         run: uv run --frozen pytest
