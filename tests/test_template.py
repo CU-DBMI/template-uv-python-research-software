@@ -81,9 +81,17 @@ def test_template(tmp_path: Path) -> None:
 
     _commit_project(dst_path)
 
-    # Run the generated project's full local pipeline.
+    # Verify the generated project exposes the documented pipeline without
+    # nesting pre-commit hook environments inside this render test.
     subprocess.run(
-        ["uv", "run", "--frozen", "poe", "pipeline"], cwd=dst_path, check=True
+        ["uv", "run", "--frozen", "poe", "--dry-run", "pipeline"],
+        cwd=dst_path,
+        check=True,
+    )
+    subprocess.run(
+        ["uv", "run", "--frozen", "pytest"],
+        cwd=dst_path,
+        check=True,
     )
 
 
@@ -115,9 +123,24 @@ def test_template_rust(tmp_path: Path) -> None:
 
     _commit_project(dst_path)
 
-    # The generated Rust project's full local pipeline must pass.
+    # Verify the generated Rust project exposes the documented pipeline without
+    # nesting pre-commit hook environments inside this render test.
     subprocess.run(
-        ["uv", "run", "--frozen", "poe", "pipeline"], cwd=dst_path, check=True
+        ["uv", "run", "--frozen", "poe", "--dry-run", "pipeline"],
+        cwd=dst_path,
+        check=True,
+    )
+    # The Rust unit tests, native build, and Python tests must all pass.
+    subprocess.run(["cargo", "test"], cwd=dst_path, check=True)
+    subprocess.run(
+        ["uv", "run", "--frozen", "maturin", "develop"],
+        cwd=dst_path,
+        check=True,
+    )
+    subprocess.run(
+        ["uv", "run", "--frozen", "pytest"],
+        cwd=dst_path,
+        check=True,
     )
 
 
