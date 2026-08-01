@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       # checks out the repo
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
       # run pre-commit
@@ -27,9 +27,9 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v8.2.0
+        uses: astral-sh/setup-uv@v8.3.2
       # use prek for speedy precommit results
-      - uses: j178/prek-action@v2.0.5
+      - uses: j178/prek-action@v2.0.6
       # run pre-commit ci lite for automated fixes
       - uses: pre-commit-ci/lite-action@v1.1.0
         if: ${{ !cancelled() }}
@@ -44,7 +44,7 @@ jobs:
       OS: ${{ matrix.os }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
       - name: Python setup
@@ -52,7 +52,7 @@ jobs:
         with:
           python-version: ${{ matrix.python_version }}
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v8.2.0
+        uses: astral-sh/setup-uv@v8.3.2
       - name: Run pytest
         run: uv run --frozen pytest
 {% endraw %}
