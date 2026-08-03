@@ -44,8 +44,13 @@ def _commit_project(path: Path) -> None:
     subprocess.run(
         ["git", "config", "user.email", "test@example.com"], cwd=path, check=True
     )
+    _lock_generated_project(path)
     subprocess.run(["git", "add", "."], cwd=path, check=True)
     subprocess.run(["git", "commit", "-m", "Initial commit"], cwd=path, check=True)
+
+
+def _lock_generated_project(path: Path) -> None:
+    subprocess.run(["uv", "lock"], cwd=path, check=True)
 
 
 def _run_standalone_project_command(args: list[str], cwd: Path) -> None:
