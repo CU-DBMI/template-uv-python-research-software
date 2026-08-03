@@ -2,6 +2,7 @@
 Tests the templating capabilities of the project.
 """
 
+import os
 import subprocess
 from pathlib import Path
 
@@ -47,6 +48,13 @@ def _commit_project(path: Path) -> None:
     subprocess.run(["git", "commit", "-m", "Initial commit"], cwd=path, check=True)
 
 
+def _run_standalone_project_command(args: list[str], cwd: Path) -> None:
+    env = os.environ.copy()
+    env.pop("UV_RUN_RECURSION_DEPTH", None)
+    env.pop("VIRTUAL_ENV", None)
+    subprocess.run(args, cwd=cwd, check=True, env=env)
+
+
 def test_template(tmp_path: Path) -> None:
     # Path to the Copier template root
     template_path = Path(__file__).resolve().parent.parent
@@ -83,15 +91,13 @@ def test_template(tmp_path: Path) -> None:
 
     # Verify the generated project exposes the documented pipeline without
     # nesting pre-commit hook environments inside this render test.
-    subprocess.run(
+    _run_standalone_project_command(
         ["uv", "run", "--frozen", "poe", "--dry-run", "pipeline"],
         cwd=dst_path,
-        check=True,
     )
-    subprocess.run(
+    _run_standalone_project_command(
         ["uv", "run", "--frozen", "pytest"],
         cwd=dst_path,
-        check=True,
     )
 
 
@@ -125,22 +131,19 @@ def test_template_rust(tmp_path: Path) -> None:
 
     # Verify the generated Rust project exposes the documented pipeline without
     # nesting pre-commit hook environments inside this render test.
-    subprocess.run(
+    _run_standalone_project_command(
         ["uv", "run", "--frozen", "poe", "--dry-run", "pipeline"],
         cwd=dst_path,
-        check=True,
     )
     # The Rust unit tests, native build, and Python tests must all pass.
-    subprocess.run(["cargo", "test"], cwd=dst_path, check=True)
-    subprocess.run(
+    _run_standalone_project_command(["cargo", "test"], cwd=dst_path)
+    _run_standalone_project_command(
         ["uv", "run", "--frozen", "maturin", "develop"],
         cwd=dst_path,
-        check=True,
     )
-    subprocess.run(
+    _run_standalone_project_command(
         ["uv", "run", "--frozen", "pytest"],
         cwd=dst_path,
-        check=True,
     )
 
 
