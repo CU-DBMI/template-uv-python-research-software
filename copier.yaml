@@ -50,6 +50,18 @@ github_primary_reviewer:
     (for example: @octocat). This is used to route
     default review requests on pull requests.
 
+use_rust:
+  type: bool
+  default: false
+  help: >-
+    Include optional high-performance Rust bindings (via PyO3 + maturin)?
+    Choose "false" for a pure-Python project (built with setuptools and
+    versioned dynamically from git tags via setuptools-scm). Choose "true"
+    to add a Rust workspace with a native extension module: the Python
+    package then calls into compiled Rust for the performance-critical work,
+    the wheel is built with maturin, and the release version is taken from
+    the Cargo workspace (synchronized from the release tag at publish time).
+
 _exclude:
   - .git
   - .DS_Store

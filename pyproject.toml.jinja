@@ -1,10 +1,15 @@
+{% if use_rust %}
+[build-system]
+build-backend = "maturin"
+requires = [ "maturin>=1.9,<2" ]
+{% else %}
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [ "setuptools>=64", "setuptools-scm>=8" ]
+{% endif %}
 
 [project]
 name = "{{ project_name }}"
-dynamic = [ "version" ]
 description = "{{ project_description }}"
 readme = "README.md"
 authors = [
@@ -16,27 +21,40 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
-  "Programming Language :: Python :: 3.14",
 ]
+dynamic = [ "version" ]
 dependencies = [
-  "pandas>=2.2.3",
-  "fire>=0.7.0",
+{% if use_rust %}
+  "fire>=0.7",
+{% else %}
+  "fire>=0.7",
   "jinja2>=3.1.6",
+  "pandas>=2.2.3",
+{% endif %}
 ]
 scripts.{{ project_name }} = "{{ python_package_name }}.cli:trigger"
 
 [dependency-groups]
 dev = [
+{% if use_rust %}
+  "coverage[toml]>=7.10.6",
+  "maturin>=1.9,<2",
   "poethepoet>=0.34",
   "pytest>=8.3.5",
   "pytest-cov>=6.2.1",
+{% else %}
   "coverage[toml]>=7.10.6",
+  "poethepoet>=0.34",
+  "pytest>=8.3.5",
+  "pytest-cov>=6.2.1",
+{% endif %}
 ]
 docs = [
   "myst-nb>=1.2",
   "pydata-sphinx-theme>=0.16.1",
   "sphinx>=8.2.3",
 ]
+{% if not use_rust %}
 notebooks = [
   "black>=25.1",
   "isort>=6.0.1",
@@ -44,7 +62,21 @@ notebooks = [
   "jupyterlab-code-formatter>=3.0.2",
   "jupytext>=1.17.1",
 ]
+{% endif %}
 
+{% if use_rust %}
+[tool.maturin]
+# Build the native extension as "{{ python_package_name }}._native" alongside the
+# pure-Python package that lives under src/. The Rust sources live in a Cargo
+# workspace under crates/; the bindings crate is the maturin entry point.
+module-name = "{{ python_package_name }}._native"
+python-source = "src"
+manifest-path = "crates/{{ python_package_name }}_python/Cargo.toml"
+include = [
+  { path = "LICENSE", format = "sdist" },
+]
+features = [ "pyo3/extension-module" ]
+{% else %}
 [tool.setuptools]
 package-dir = { "" = "src" }
 include-package-data = true
@@ -58,6 +90,7 @@ root = "."
 version_scheme = "no-guess-dev"
 local_scheme = "no-local-version"
 version_file = "src/{{ python_package_name }}/_version.py"
+{% endif %}
 
 [tool.ruff]
 target-version = "py311"
@@ -88,6 +121,11 @@ lint.select = [
 ]
 # Ignore `F401` (unused imports) for `__init__.py` file
 lint.per-file-ignores."__init__.py" = [ "F401" ]
+{% if use_rust %}
+# Ignore `PLC0415` (import not at top-level) for `api.py`, which defers the
+# native extension import so the pure-Python package stays importable.
+lint.per-file-ignores."src/{{ python_package_name }}/api.py" = [ "PLC0415" ]
+{% endif %}
 
 [tool.pytest.ini_options]
 pythonpath = [ "." ]
@@ -106,6 +144,28 @@ show_missing = true
 skip_covered = true
 
 [tool.poe.tasks]
+{% if use_rust %}
+# tasks for development environments
+# build the native extension into the active environment
+develop.shell = """
+maturin develop --uv
+"""
+# run the Rust unit tests
+rust-test.shell = """
+cargo test
+"""
+# rebuild the extension, then run the Python tests
+test.shell = """
+maturin develop --uv && pytest
+"""
+lint.shell = """
+pre-commit run --all-files
+"""
+# full local pipeline: Rust tests, native build, linting, Python tests
+pipeline.shell = """
+cargo test && maturin develop --uv && pre-commit run --all-files && pytest
+"""
+{% else %}
 # tasks for development environments
 test.shell = """
 pytest
@@ -119,10 +179,13 @@ pre-commit run --all-files && pytest
 jupyter.shell = """
 jupyter lab
 """
+{% endif %}
 
+{% if not use_rust %}
 [tool.jupytext]
 formats = "ipynb,py:light"
 
+{% endif %}
 [tool.vulture]
 min_confidence = 90
 paths = [ "src/{{ python_package_name }}", "tests" ]

@@ -1,0 +1,48 @@
+"""
+Python API for {{ project_name }}.
+
+The performance-critical work is implemented in Rust and exposed through the
+native extension module ``{{ python_package_name }}._native``. The native import
+is deferred into each function so that importing this package (for example to
+read its version or to build documentation) does not require the compiled
+extension to be present -- only calling the functions does. Build the extension
+for local development with ``maturin develop`` (or ``poe develop``).
+"""
+
+from __future__ import annotations
+
+
+def sum_primes(limit: int) -> int:
+    """
+    Sum the prime numbers strictly less than ``limit``.
+
+    Args:
+        limit (int):
+            Exclusive upper bound. Must be non-negative.
+
+    Returns:
+        int:
+            The sum of every prime ``p`` with ``p < limit``.
+    """
+
+    from {{ python_package_name }} import _native
+
+    return _native.sum_primes(limit)
+
+
+def count_primes(limit: int) -> int:
+    """
+    Count the prime numbers strictly less than ``limit``.
+
+    Args:
+        limit (int):
+            Exclusive upper bound. Must be non-negative.
+
+    Returns:
+        int:
+            The number of primes ``p`` with ``p < limit``.
+    """
+
+    from {{ python_package_name }} import _native
+
+    return _native.count_primes(limit)

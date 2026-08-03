@@ -1,0 +1,28 @@
+//! Python bindings for {{ project_name }}.
+//!
+//! This crate exposes the routines from `{{ python_package_name }}_core` to
+//! Python as the native extension module `{{ python_package_name }}._native`.
+//! Keep this layer thin: convert types, call into the core crate, and let the
+//! heavy lifting happen in pure Rust.
+
+use pyo3::prelude::*;
+
+/// Count the prime numbers strictly less than `limit`.
+#[pyfunction]
+fn count_primes(limit: u64) -> u64 {
+    {{ python_package_name }}_core::count_primes(limit)
+}
+
+/// Sum the prime numbers strictly less than `limit`.
+#[pyfunction]
+fn sum_primes(limit: u64) -> u64 {
+    {{ python_package_name }}_core::sum_primes(limit)
+}
+
+/// The native extension module: `{{ python_package_name }}._native`.
+#[pymodule]
+fn _native(module: &Bound<'_, PyModule>) -> PyResult<()> {
+    module.add_function(wrap_pyfunction!(count_primes, module)?)?;
+    module.add_function(wrap_pyfunction!(sum_primes, module)?)?;
+    Ok(())
+}

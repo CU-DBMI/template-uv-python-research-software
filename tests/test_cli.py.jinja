@@ -4,6 +4,22 @@ Tests for the cli module.
 
 import subprocess
 
+{% if use_rust %}
+
+def test_sum_primes_cli() -> None:
+    """
+    Test the sum_primes function from the CLI.
+    """
+
+    output = subprocess.run(
+        ["uv", "run", "{{ project_name }}", "sum_primes", "--limit=10"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    # primes below 10 are 2, 3, 5, 7 -> sum of 17
+    assert "17" in str(output.stdout)
+{% else %}
 
 def test_show_message_cli(my_data: str) -> None:
     """
@@ -11,9 +27,10 @@ def test_show_message_cli(my_data: str) -> None:
     """
 
     output = subprocess.run(
-        ["uv", "run", "{{ project_name }}", "show_message", f"--message='Hello terminal!'"],
+        ["uv", "run", "{{ project_name }}", "show_message", "--message='Hello terminal!'"],
         capture_output=True,
         text=True,
         check=True,
     )
     assert "Hello terminal!" in str(output.stdout)
+{% endif %}

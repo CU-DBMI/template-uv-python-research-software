@@ -1,6 +1,14 @@
 # Python API
 
 ```{eval-rst}
+{% if use_rust %}
+{{ python_package_name }}.api
+-------------------
+.. automodule:: src.{{ python_package_name }}.api
+   :members:
+   :undoc-members:
+   :show-inheritance:
+{% else %}
 {{ python_package_name }}.main
 -------------------
 .. automodule:: src.{{ python_package_name }}.main
@@ -8,4 +16,5 @@
    :private-members:
    :undoc-members:
    :show-inheritance:
+{% endif %}
 ```

@@ -11,6 +11,9 @@ This template gives you a ready-to-run Python research software project with:
 - Pre-commit automation for formatting, linting, and type checks
 - GitHub Actions workflows for linting, tests, docs, and release-related automation
 - Starter package + CLI scaffold under `src/`
+{% if use_rust %}
+- Optional high-performance Rust bindings (PyO3 + maturin) with a Cargo workspace under `crates/`
+{% endif %}
 - Documentation scaffold under `docs/`
 - Poe task entrypoints for common local workflows (including a full local pipeline task)
 
@@ -27,6 +30,27 @@ This project includes agent guidance in `.agents/skills/` with common skills for
 
 If you do not want to use local agent guidance in your project, remove `AGENTS.md` and the `.agents/` directory.
 
+{% if use_rust %}
+## Working with the Rust bindings
+
+This project includes a native extension written in Rust. The performance-critical work lives in a Cargo workspace under `crates/`:
+
+- `crates/{{ python_package_name }}_core` — a plain Rust library with the core routines (unit-tested with `cargo test`)
+- `crates/{{ python_package_name }}_python` — a thin [PyO3](https://pyo3.rs/) layer that exposes them to Python as the native module `{{ python_package_name }}._native`
+
+The Python package under `src/{{ python_package_name }}/` calls into the compiled extension, so build it into your environment before running the Python code:
+
+```sh
+# build the native extension into the active uv environment
+uv run maturin develop
+
+# or use the provided poe task
+uv run poe develop
+```
+
+`uv run poe test` rebuilds the extension and runs the Python tests; `uv run poe pipeline` runs the Rust tests, rebuilds, lints, and runs the Python tests. See the [versioning notes]({{ github_url }}/blob/main/CONTRIBUTING.md#versioning) for how release versions flow from git tags into the built wheel.
+
+{% endif %}
 ## Post template copy instructions
 
 While we provide some customizations to the files in this template based on your specification there's likely a chance some things aren't perfect.

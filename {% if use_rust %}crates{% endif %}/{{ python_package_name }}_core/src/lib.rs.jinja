@@ -1,0 +1,71 @@
+//! Core high-performance routines for {{ project_name }}.
+//!
+//! This crate is plain Rust with no Python dependency, which keeps the
+//! performance-critical work easy to unit test with `cargo test` and reusable
+//! from other Rust code. The sibling `{{ python_package_name }}_python` crate
+//! wraps these functions and exposes them to Python as a native extension.
+//!
+//! The example computation is a prime sieve: a small, CPU-bound kernel that is
+//! a good stand-in for whatever heavy numerical work your project needs. Swap
+//! the bodies of these functions for your own hot path.
+
+/// Build a boolean sieve marking the primality of every value `< limit`.
+fn sieve(limit: u64) -> Vec<bool> {
+    let n = limit as usize;
+    let mut is_prime = vec![true; n];
+    if n > 0 {
+        is_prime[0] = false;
+    }
+    if n > 1 {
+        is_prime[1] = false;
+    }
+    let mut p = 2usize;
+    while p * p < n {
+        if is_prime[p] {
+            let mut multiple = p * p;
+            while multiple < n {
+                is_prime[multiple] = false;
+                multiple += p;
+            }
+        }
+        p += 1;
+    }
+    is_prime
+}
+
+/// Count the prime numbers strictly less than `limit`.
+pub fn count_primes(limit: u64) -> u64 {
+    sieve(limit).iter().filter(|&&prime| prime).count() as u64
+}
+
+/// Sum the prime numbers strictly less than `limit`.
+pub fn sum_primes(limit: u64) -> u64 {
+    sieve(limit)
+        .iter()
+        .enumerate()
+        .filter(|(_, &prime)| prime)
+        .map(|(value, _)| value as u64)
+        .sum()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn counts_small_primes() {
+        // primes below 10 are 2, 3, 5, 7
+        assert_eq!(count_primes(10), 4);
+        assert_eq!(count_primes(2), 0);
+        assert_eq!(count_primes(1), 0);
+        assert_eq!(count_primes(0), 0);
+    }
+
+    #[test]
+    fn sums_small_primes() {
+        // 2 + 3 + 5 + 7 = 17
+        assert_eq!(sum_primes(10), 17);
+        assert_eq!(sum_primes(3), 2);
+        assert_eq!(sum_primes(0), 0);
+    }
+}

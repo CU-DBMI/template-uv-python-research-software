@@ -19,6 +19,17 @@ Projects generated from this template include:
 - Documentation scaffold under `docs/`
 - Poe task entrypoints for common local workflows (including a full local pipeline task)
 
+## Template variants
+
+This template can generate either of two project shapes:
+
+- **Pure Python**: a standard `src/`-layout Python package built with setuptools, with optional notebook scaffolding for research workflows.
+- **Rust-bound Python**: a Python package backed by a Rust workspace under `crates/`, using PyO3 and maturin to expose a native extension module for performance-sensitive routines.
+
+Copier asks for this choice through the `use_rust` option.
+Choose the pure-Python variant when portability, simple packaging, and a smaller contributor toolchain matter most.
+Choose the Rust-bound variant when you expect core routines to benefit from a compiled implementation while keeping a Python API and CLI for users.
+
 ## Included agent skills
 
 Generated projects include agent guidance in `.agents/skills/` with common skills for:
@@ -55,6 +66,7 @@ Copier already excludes `.git` from rendered output, so copying this template in
 - Support for Jupyter notebook development alongside a local Python package
 - `.pre-commit-config.yaml` which can help with pre-commit checks for your project
 - Adds a CLI boilerplate to build from based on `fire`.
+- Optional Rust bindings scaffold with Cargo workspace crates, PyO3 bindings, maturin builds, Rust-aware CI, and release publishing support.
 
 ## Post-copy guidance
 

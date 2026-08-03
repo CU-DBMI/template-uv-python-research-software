@@ -1,0 +1,9 @@
+"""
+Init file for example package.
+"""
+
+{% if use_rust %}
+from .api import count_primes, sum_primes
+{% else %}
+from .main import show_message
+{% endif %}
