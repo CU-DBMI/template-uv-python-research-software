@@ -23,13 +23,13 @@ jobs:
           persist-credentials: false
       # run pre-commit
       - name: Python setup
-        uses: actions/setup-python@v6.3.0
+        uses: actions/setup-python@v7
         with:
           python-version: "3.11"
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v8.3.2
+        uses: astral-sh/setup-uv@v9.0.0
       # use prek for speedy precommit results
-      - uses: j178/prek-action@v2.0.6
+      - uses: j178/prek-action@v3.0.0
       # run pre-commit ci lite for automated fixes
       - uses: pre-commit-ci/lite-action@v1.1.0
         if: ${{ !cancelled() }}
@@ -48,11 +48,11 @@ jobs:
         with:
           persist-credentials: false
       - name: Python setup
-        uses: actions/setup-python@v6.3.0
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python_version }}
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v8.3.2
+        uses: astral-sh/setup-uv@v9.0.0
 {% endraw %}
 {% if use_rust %}
       - name: Rust setup
