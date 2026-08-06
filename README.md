@@ -40,6 +40,7 @@ Generated projects include agent guidance in `.agents/skills/` with common skill
 - CI/CD and automation workflow alignment
 - Debugging and error recovery
 - Optional learning exercises for comprehension (`learning-opportunities`)
+- Simplified Technical English (ASD-STE100) writing checks for docs and user-facing text (`simple-english`)
 
 If you do not want to use local agent guidance in your project, remove `AGENTS.md` and the `.agents/` directory.
 

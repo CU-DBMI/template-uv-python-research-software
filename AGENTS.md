@@ -13,6 +13,7 @@ This repository includes local agent guidance in `.agents/skills/`.
   - `.agents/skills/ci-cd-and-automation/SKILL.md`
   - `.agents/skills/debugging-and-error-recovery/SKILL.md`
   - `.agents/skills/learning-opportunities/SKILL.md`
+  - `.agents/skills/simple-english/SKILL.md`
 
 ## How to use these skills
 
@@ -28,6 +29,7 @@ This repository includes local agent guidance in `.agents/skills/`.
 1. Apply `ci-cd-and-automation` when changing checks, tasks, or pipelines.
 1. Apply `debugging-and-error-recovery` when tests, CI, or runtime behavior fails unexpectedly.
 1. Optionally apply `learning-opportunities` for 10-15 minute learning exercises after design-heavy work.
+1. Apply `simple-english` when writing or rewriting documentation, READMEs, error messages, or other user-facing text.
 
 ## Local commands
 
