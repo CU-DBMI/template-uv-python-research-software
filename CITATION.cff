@@ -38,3 +38,10 @@ references:
         family-names: Hicks
     repository-code: "https://github.com/DrCatHicks/learning-opportunities"
     license: CC-BY-4.0
+  - type: software
+    title: "simple-english"
+    authors:
+      - given-names: Amin
+        family-names: Boulegroun
+    repository-code: "https://github.com/AminBlg/SimpleEnglish"
+    license: MIT
