@@ -7,6 +7,7 @@ This repository includes local agent guidance in `.agents/skills/`.
 - Root guide: `AGENTS.md`
 - Skills directory: `.agents/skills/`
 - Skill directories:
+  - `.agents/skills/caveman/SKILL.md`
   - `.agents/skills/test-driven-development/SKILL.md`
   - `.agents/skills/incremental-implementation/SKILL.md`
   - `.agents/skills/code-review-and-quality/SKILL.md`
@@ -30,6 +31,7 @@ This repository includes local agent guidance in `.agents/skills/`.
 1. Apply `debugging-and-error-recovery` when tests, CI, or runtime behavior fails unexpectedly.
 1. Optionally apply `learning-opportunities` for 10-15 minute learning exercises after design-heavy work.
 1. Apply `simple-english` when writing or rewriting documentation, READMEs, error messages, or other user-facing text.
+1. Apply `caveman` for token-efficient chat replies. Do not use it for persisted project text unless requested.
 
 ## Local commands
 
