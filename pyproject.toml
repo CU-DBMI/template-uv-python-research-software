@@ -75,10 +75,10 @@ ini_options.addopts = [
 ]
 
 [tool.coverage]
-run.branch = true
 run.source = [ "tests" ]
-report.show_missing = true
+run.branch = true
 report.skip_covered = true
+report.show_missing = true
 
 [tool.poe]
 tasks.test.shell = "pytest"
