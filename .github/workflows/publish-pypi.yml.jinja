@@ -35,7 +35,7 @@ jobs:
             target: x64
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
       - name: Python setup
@@ -50,13 +50,13 @@ jobs:
         shell: bash
         run: python tools/sync_release_version.py "$RELEASE_TAG"
       - name: Build wheel
-        uses: PyO3/maturin-action@v1
+        uses: PyO3/maturin-action@v1.51.0
         with:
           target: {{ '${{ matrix.target }}' }}
           args: --release --out dist
           manylinux: auto
       - name: Upload wheel
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: wheels-{{ '${{ matrix.runner }}' }}-{{ '${{ matrix.target }}' }}
           path: dist/*.whl
@@ -69,7 +69,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
       - name: Python setup
@@ -84,12 +84,12 @@ jobs:
         shell: bash
         run: python tools/sync_release_version.py "$RELEASE_TAG"
       - name: Build source distribution
-        uses: PyO3/maturin-action@v1
+        uses: PyO3/maturin-action@v1.51.0
         with:
           command: sdist
           args: --out dist
       - name: Upload source distribution
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: sdist
           path: dist/*.tar.gz
@@ -107,13 +107,13 @@ jobs:
       id-token: write
     steps:
       - name: Download package distributions
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@v8.0.1
         with:
           path: dist
           pattern: "*"
           merge-multiple: true
       - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@v1.14.0
+        uses: pypa/gh-action-pypi-publish@v1.14.2
 {% else %}
 
 on:
