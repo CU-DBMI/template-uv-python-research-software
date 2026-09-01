@@ -27,7 +27,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v9.0.0
+        uses: astral-sh/setup-uv@v10.0.1
       # use prek for speedy precommit results
       - uses: j178/prek-action@v3.0.0
       # run pre-commit ci lite for automated fixes
@@ -52,7 +52,7 @@ jobs:
         with:
           python-version: ${{ matrix.python_version }}
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v9.0.0
+        uses: astral-sh/setup-uv@v10.0.1
 {% endraw %}
 {% if use_rust %}
       - name: Rust setup
