@@ -39,7 +39,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Python setup
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@v7.1.0
         with:
           python-version: "3.11"
       - name: Rust setup
@@ -56,7 +56,7 @@ jobs:
           args: --release --out dist
           manylinux: auto
       - name: Upload wheel
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: wheels-{{ '${{ matrix.runner }}' }}-{{ '${{ matrix.target }}' }}
           path: dist/*.whl
@@ -73,7 +73,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Python setup
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@v7.1.0
         with:
           python-version: "3.11"
       - name: Rust setup
@@ -89,7 +89,7 @@ jobs:
           command: sdist
           args: --out dist
       - name: Upload source distribution
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: sdist
           path: dist/*.tar.gz
@@ -107,13 +107,13 @@ jobs:
       id-token: write
     steps:
       - name: Download package distributions
-        uses: actions/download-artifact@v8.0.1
+        uses: actions/download-artifact@v8.0.2
         with:
           path: dist
           pattern: "*"
           merge-multiple: true
       - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@v1.14.2
+        uses: pypa/gh-action-pypi-publish@v1.14.3
 {% else %}
 
 on:
@@ -138,15 +138,15 @@ jobs:
       - name: Fetch tags
         run: git fetch --all --tags
       - name: Python setup
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@v7.1.0
         with:
           python-version: "3.11"
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v10.2.0
+        uses: astral-sh/setup-uv@v10.3.3
         with:
           enable-cache: false
       - name: uv build distribution content
         run: uv build
       - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@v1.14.2
+        uses: pypa/gh-action-pypi-publish@v1.14.3
 {% endif %}
