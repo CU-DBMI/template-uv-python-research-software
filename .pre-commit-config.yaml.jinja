@@ -55,10 +55,8 @@ repos:
     rev: 'v2.14'
     hooks:
     -   id: vulture
--   repo: local
+-   repo: https://github.com/astral-sh/ty-pre-commit
+    rev: v0.0.99
     hooks:
     -   id: ty
-        name: ty
-        entry: uv run --frozen --with ty ty check
-        language: system
-        files: ^(src|tests)/.*\.py$
+        args: [--frozen]

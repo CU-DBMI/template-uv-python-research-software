@@ -55,14 +55,11 @@ repos:
     rev: 'v2.16'
     hooks:
     -   id: vulture
--   repo: local
+-   repo: https://github.com/astral-sh/ty-pre-commit
+    rev: v0.0.99
     hooks:
     -   id: ty
-        name: ty
-        entry: uv run --frozen --with ty ty check
-        language: system
-        files: ^(src|tests)/.*\.py$
-        exclude: ^src/\{\{\ python_package_name\ \}\}/__init__\.py$
+        args: [--frozen]
 -   repo: https://github.com/aristanetworks/j2lint
     rev: "v1.3.0"
     hooks:
