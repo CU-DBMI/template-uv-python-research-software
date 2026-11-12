@@ -19,6 +19,7 @@ _COMMON_DATA = {
     "github_url": "https://github.com/org/repo",
     "github_primary_reviewer": "@octocat",
     "use_rust": False,
+    "formal_verification": "lightweight",
 }
 
 

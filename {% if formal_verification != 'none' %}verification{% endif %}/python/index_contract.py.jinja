@@ -1,0 +1,12 @@
+"""Illustrate contracts, not verification of this package's production code."""
+
+
+def normalize_index(index: int, length: int) -> int:
+    """Normalize a valid positive or negative index.
+
+    pre: length > 0
+    pre: -length <= index < length
+    post: 0 <= __return__ < length
+    post: __return__ == index % length
+    """
+    return index if index >= 0 else length + index

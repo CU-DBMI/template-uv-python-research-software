@@ -11,3 +11,8 @@ rust-version.workspace = true
 name = "{{ python_package_name }}_core"
 
 [dependencies]
+{% if formal_verification != 'none' %}
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(kani)'] }
+{% endif %}

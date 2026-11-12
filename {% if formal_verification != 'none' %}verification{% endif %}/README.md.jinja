@@ -1,0 +1,110 @@
+# Verification inventory
+
+These checks cover small properties, not the correctness of the whole package.
+The Python example is instructional and does not run in the production package.
+A verified copy of an algorithm does not verify the production implementation.
+
+| Function | Property | Tool | Assumptions/bounds | Status |
+| --- | --- | --- | --- | --- |
+| `verification/python/index_contract.py:normalize_index` | Result is in bounds and equals `index % length` | CrossHair 0.0.113 | Positive length, valid input index, 10-second search per condition | Example |
+| `normalize_index` (same instructional example) | Same properties on generated concrete examples | Hypothesis 6.170.15 | Positive lengths and valid indices | Example |
+{% if use_rust %}
+| Production Rust `count_primes` and `sum_primes` | Exact counts and sums match reference values | Kani 0.68.0 | Every `u64` limit in `0..=8`; unwind 10 with unwinding assertions enabled | Example |
+{% endif %}
+
+After a check runs, record its date, tool version, source revision, result, assumptions, and bounds.
+Use honest statuses: `Example`, `Checked in CI`, `Failed`, `Not checked`, or `Proof established`.
+Do not mark the examples as checked merely because the template includes them.
+A proof claim must name the exact property, input domain, and tool assumptions.
+
+## Python checks
+
+The development group pins Hypothesis. The optional `verification` group pins CrossHair and locks its solver dependencies.
+CrossHair runs only on Python 3.11. Its group restriction does not change the normal Python support matrix.
+
+Run concrete tests:
+
+```sh
+uv run --frozen pytest
+```
+
+{% if use_rust %}
+Build the extension with `uv run --frozen maturin develop` before the full Python suite.
+{% endif %}
+Run the standalone example without a package build:
+
+```sh
+uv run --frozen --python 3.11 --only-group dev --only-group verification pytest -o addopts= tests/test_index_contract.py
+uv run --frozen --python 3.11 --only-group dev --only-group verification crosshair check --report_all --per_condition_timeout 10 verification/python/
+```
+
+The contract command is also available as `uv run --frozen poe verify-python`.
+The separate `formal-verification` workflow uses the same commands on one Linux runner.
+The full Python/OS matrix does not run CrossHair.
+
+For useful package assurance, attach contracts to selected production functions that the package actually calls.
+Replace the example target with those modules. Use `--group verification` instead of the two `--only-group` flags when the target needs the installed package.
+Small pure helpers for indexing, offsets, identifiers, validation, and boundary conditions are good candidates.
+Use Hypothesis and integration tests for unsupported NumPy/Pandas operations, native extension internals, databases, networks, and complex mutable state.
+
+Hypothesis checks generated concrete examples. These tests are not mathematical proofs.
+CrossHair searches for counterexamples through symbolic execution. A successful exit does not prove that every input satisfies the contract.
+Inspect its `--report_all` results. Timeouts and unknown conditions remain gaps, not verified properties.
+
+{% if use_rust %}
+## Rust checks
+
+The core crate contains a Kani harness next to the production functions that the Python extension calls.
+It does not verify a separate implementation. Read its input assumptions and unwind annotation before interpreting a result.
+The small bounded domain is an instructional starting point, not a claim about arbitrary production input sizes.
+
+Install the pinned driver and its matching compiler:
+
+```sh
+cargo install --locked kani-verifier --version 0.68.0
+cargo kani setup
+cargo kani -p {{ python_package_name }}_core
+```
+
+Kani setup installs its own compatible Rust toolchain. CI bootstraps with Rust 1.99.1.
+After setup, `uv run --frozen poe verify-rust` runs the same harness.
+The separate Linux Kani job does not change `cargo test` or require Kani for normal development.
+Its meaningful bounded harness runs on pull requests. Branch protection remains a maintainer decision.
+If you remove the harness, make the job manual until meaningful production properties exist again.
+
+Kani checks assertions and safety properties under the stated assumptions and bounds.
+An insufficient unwind bound, excluded real input, unsupported operation, or failed check is not a successful verification.
+Kani fits indexing, integer arithmetic, parsing state, conversions, and bounds checks.
+
+{% endif %}
+{% if formal_verification == 'advanced' %}
+## Advanced assessment
+
+No Nagini or Verus installation is mandatory. The default checks remain unchanged.
+
+### Nagini for Python
+
+Consider Nagini when a small algorithm needs stronger deductive guarantees and uses supported Python constructs.
+The team must maintain contracts, loop invariants, specifications, and the solver toolchain.
+Do not introduce Nagini only to verify NumPy/Pandas operations that it cannot model directly.
+
+### Verus for Rust
+
+Consider Verus when unbounded or richer mathematical proofs matter and Kani bounds or harness assumptions are insufficient.
+A critical algorithm must justify maintained proof annotations and specifications.
+
+Both tools can establish stronger deductive results for supported code.
+Correctness still depends on specifications, supported semantics, and tool assumptions.
+Evaluate one concrete production property before adding either toolchain.
+
+{% endif %}
+## Maintenance
+
+1. Inspect the production function and existing tests before adding a property.
+1. Select a precise input/output invariant that matters for the research result.
+1. Keep assumptions consistent with real callers and document excluded inputs.
+1. Run the focused check and the normal tests after each change.
+1. Record the result and remaining gaps in this inventory.
+1. When you update a tool pin, regenerate `uv.lock` with `uv lock` and repeat both checks on Python 3.11.
+
+See `.agents/skills/formal-verification/SKILL.md` for the review process.

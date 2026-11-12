@@ -1,0 +1,15 @@
+"""Concrete generated examples complement the symbolic contract example."""
+
+from hypothesis import given
+from hypothesis import strategies as st
+
+from verification.python.index_contract import normalize_index
+
+
+@given(length=st.integers(min_value=1), data=st.data())
+def test_normalize_index(length: int, data: st.DataObject) -> None:
+    """Check both index signs, including the boundary values."""
+    index = data.draw(st.integers(min_value=-length, max_value=length - 1))
+    result = normalize_index(index, length)
+    assert 0 <= result < length
+    assert result == index % length
