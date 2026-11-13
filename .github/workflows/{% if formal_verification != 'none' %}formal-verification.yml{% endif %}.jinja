@@ -1,0 +1,52 @@
+---
+name: formal-verification
+
+"on":
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python-verification:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v10.3.3
+        with:
+          python-version: "3.11"
+      # Do not build the optional native extension for this pure Python example.
+      - name: Check generated concrete examples
+        run: >-
+          uv run --frozen --python 3.11 --only-group dev
+          --only-group verification pytest -o addopts= tests/test_index_contract.py
+      - name: Check contracts (bounded symbolic search, not an exhaustive proof)
+        run: >-
+          uv run --frozen --python 3.11 --only-group dev
+          --only-group verification crosshair check --report_all
+          --per_condition_timeout 10 verification/python/
+{% if use_rust %}
+
+  rust-verification:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install pinned Rust bootstrap toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.99.1
+      # Setup installs Kani's matching compiler, independent of normal cargo test.
+      - name: Install pinned Kani
+        run: |
+          cargo install --locked kani-verifier --version 0.68.0
+          cargo kani setup
+      - name: Check bounded production properties
+        run: cargo kani -p {{ python_package_name }}_core
+{% endif %}

@@ -38,6 +38,9 @@ scripts.{{ project_name }} = "{{ python_package_name }}.cli:trigger"
 
 [dependency-groups]
 dev = [
+{% if formal_verification != 'none' %}
+  "hypothesis==6.170.15",
+{% endif %}
 {% if use_rust %}
   "coverage[toml]>=7.10.6",
   "maturin>=1.9,<2",
@@ -51,6 +54,10 @@ dev = [
   "pytest-cov>=6.2.1",
 {% endif %}
 ]
+{% if formal_verification != 'none' %}
+# Keep the symbolic checker off the normal Python/OS matrix.
+verification = [ "crosshair-tool==0.0.113" ]
+{% endif %}
 docs = [
   "myst-nb>=1.2",
   "pydata-sphinx-theme>=0.16.1",
@@ -92,6 +99,11 @@ root = "."
 version_scheme = "no-guess-dev"
 local_scheme = "no-local-version"
 version_file = "src/{{ python_package_name }}/_version.py"
+{% endif %}
+
+{% if formal_verification != 'none' %}
+[tool.uv.dependency-groups]
+verification = { requires-python = ">=3.11,<3.12" }
 {% endif %}
 
 [tool.ruff]
@@ -146,6 +158,16 @@ show_missing = true
 skip_covered = true
 
 [tool.poe.tasks]
+{% if formal_verification != 'none' %}
+verify-python.shell = """
+uv run --frozen --python 3.11 --only-group dev --only-group verification crosshair check --report_all --per_condition_timeout 10 verification/python/
+"""
+{% endif %}
+{% if use_rust and formal_verification != 'none' %}
+verify-rust.shell = """
+cargo kani -p {{ python_package_name }}_core
+"""
+{% endif %}
 {% if use_rust %}
 # tasks for development environments
 # build the native extension into the active environment

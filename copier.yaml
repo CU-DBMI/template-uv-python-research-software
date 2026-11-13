@@ -62,6 +62,18 @@ use_rust:
     the wheel is built with maturin, and the release version is taken from
     the Cargo workspace (synchronized from the release tag at publish time).
 
+formal_verification:
+  type: str
+  default: lightweight
+  choices:
+    - none
+    - lightweight
+    - advanced
+  help: >-
+    Include optional verification guidance and tooling.
+    Lightweight uses Hypothesis and CrossHair for Python and Kani for Rust.
+    Advanced also documents when to consider Nagini and Verus.
+
 _exclude:
   - .git
   - .DS_Store
@@ -72,6 +84,9 @@ _exclude:
   - copier.yaml
   - renovate.json
   - tests/test_template.py
+  - tests/test_verification.py
+  - scripts/check_verification.py
+  - .github/workflows/test-template-verification.yml
   - .github/workflows/test-template.yml
 
 _envops:

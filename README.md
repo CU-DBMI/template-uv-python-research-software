@@ -30,6 +30,25 @@ Copier asks for this choice through the `use_rust` option.
 Choose the pure-Python variant when portability, simple packaging, and a smaller contributor toolchain matter most.
 Choose the Rust-bound variant when you expect core routines to benefit from a compiled implementation while keeping a Python API and CLI for users.
 
+## Optional verification
+
+The `formal_verification` option is independent of `use_rust`:
+
+| Setting                 | Python                                         | Rust (when enabled)                         |
+| ----------------------- | ---------------------------------------------- | ------------------------------------------- |
+| `none`                  | Existing pytest tooling                        | Existing cargo test tooling                 |
+| `lightweight` (default) | Pinned Hypothesis and optional CrossHair group | Pinned Kani harness and separate job        |
+| `advanced`              | Same checks, with Nagini assessment guidance   | Same checks, with Verus assessment guidance |
+
+Verification uses one Linux job per language, not the regular Python/OS matrix.
+CrossHair runs on Python 3.11 in an optional dependency group, so newer normal test interpreters do not install it.
+Generated locks include the tested versions. No verification tool is a runtime dependency.
+See the generated `verification/README.md` for commands, assumptions, bounds, and the verification inventory.
+Nagini and Verus are not mandatory installations.
+
+Hypothesis checks concrete examples. CrossHair searches for contract violations without an exhaustive proof guarantee.
+Kani checks Rust within the harness assumptions and bounds. More tools do not imply better correctness.
+
 ## Included agent skills
 
 Generated projects include agent guidance in `.agents/skills/` with common skills for:
@@ -38,6 +57,7 @@ Generated projects include agent guidance in `.agents/skills/` with common skill
 - Incremental implementation
 - Code review and quality checks
 - CI/CD and automation workflow alignment
+- Targeted correctness properties and honest verification reports (`formal-verification`)
 - Debugging and error recovery
 - Optional learning exercises for comprehension (`learning-opportunities`)
 - Simplified Technical English (ASD-STE100) writing checks for docs and user-facing text (`simple-english`)

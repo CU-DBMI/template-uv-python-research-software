@@ -12,6 +12,7 @@ This repository includes local agent guidance in `.agents/skills/`.
   - `.agents/skills/incremental-implementation/SKILL.md`
   - `.agents/skills/code-review-and-quality/SKILL.md`
   - `.agents/skills/ci-cd-and-automation/SKILL.md`
+  - `.agents/skills/formal-verification/SKILL.md`
   - `.agents/skills/debugging-and-error-recovery/SKILL.md`
   - `.agents/skills/learning-opportunities/SKILL.md`
   - `.agents/skills/simple-english/SKILL.md`

@@ -25,6 +25,7 @@ This project includes agent guidance in `.agents/skills/` with common skills for
 - Incremental implementation
 - Code review and quality checks
 - CI/CD and automation workflow alignment
+- Targeted correctness properties and honest verification reports (`formal-verification`)
 - Debugging and error recovery
 - Optional learning exercises (`learning-opportunities`)
 - Simplified Technical English (ASD-STE100) writing checks (`simple-english`)
@@ -50,6 +51,19 @@ uv run poe develop
 ```
 
 `uv run poe test` rebuilds the extension and runs the Python tests; `uv run poe pipeline` runs the Rust tests, rebuilds, lints, and runs the Python tests. See the [versioning notes]({{ github_url }}/blob/main/CONTRIBUTING.md#versioning) for how release versions flow from git tags into the built wheel.
+
+{% endif %}
+{% if formal_verification != 'none' %}
+## Optional verification
+
+This project includes Hypothesis examples and a separate CrossHair check on Python 3.11.
+{% endif %}
+{% if use_rust and formal_verification != 'none' %}
+It also includes a pinned Kani check of bounded properties in the production Rust core.
+{% endif %}
+{% if formal_verification != 'none' %}
+See [the verification inventory](verification/README.md) for commands, assumptions, and limits.
+These checks do not replace the normal test suite or establish correctness of the whole package.
 
 {% endif %}
 ## Post template copy instructions

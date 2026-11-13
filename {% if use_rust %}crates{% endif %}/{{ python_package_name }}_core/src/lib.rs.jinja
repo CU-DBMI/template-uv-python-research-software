@@ -48,6 +48,30 @@ pub fn sum_primes(limit: u64) -> u64 {
         .sum()
 }
 
+{% if formal_verification != 'none' %}
+#[cfg(kani)]
+mod verification {
+    use super::{count_primes, sum_primes};
+
+    #[kani::proof]
+    #[kani::unwind(10)]
+    fn prime_counts_and_sums_match_small_reference() {
+        let limit: u64 = kani::any();
+        // This proof covers every limit from 0 through 8, not larger inputs.
+        // The bound keeps allocations and sieve/iterator loops small.
+        kani::assume(limit <= 8);
+        // Ten unwind steps cover at most eight elements plus loop termination.
+        // Kani's unwinding assertions remain enabled to check this bound.
+        // Reference values count and sum the primes 2, 3, 5, 7 strictly below limit.
+        let expected_counts = [0, 0, 0, 1, 2, 2, 3, 3, 4];
+        let expected_sums = [0, 0, 0, 2, 5, 5, 10, 10, 17];
+        // Call the production functions, including their shared sieve.
+        assert_eq!(count_primes(limit), expected_counts[limit as usize]);
+        assert_eq!(sum_primes(limit), expected_sums[limit as usize]);
+    }
+}
+
+{% endif %}
 #[cfg(test)]
 mod tests {
     use super::*;
