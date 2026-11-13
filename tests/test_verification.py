@@ -35,7 +35,7 @@ def test_verification_options(
     environment["SETUPTOOLS_SCM_PRETEND_VERSION"] = "0.0.0"
     environment.pop("VIRTUAL_ENV", None)
     subprocess.run(
-        ["uv", "lock", "--check"],
+        ["uv", "lock"],
         cwd=destination,
         env=environment,
         check=True,

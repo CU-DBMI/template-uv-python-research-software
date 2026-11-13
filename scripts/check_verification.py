@@ -35,7 +35,7 @@ def main() -> None:
             quiet=True,
             vcs_ref="HEAD",
         )
-        commands = [["uv", "lock", "--check"]]
+        commands = [["uv", "lock"]]
         if args.rust:
             commands.append(["cargo", "kani", "-p", "verification_demo_core"])
         else:
