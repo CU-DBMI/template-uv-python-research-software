@@ -12,6 +12,7 @@ This repository includes local agent guidance in `.agents/skills/`.
   - `.agents/skills/incremental-implementation/SKILL.md`
   - `.agents/skills/code-review-and-quality/SKILL.md`
   - `.agents/skills/ci-cd-and-automation/SKILL.md`
+  - `.agents/skills/privacy-and-licensing/SKILL.md`
   - `.agents/skills/formal-verification/SKILL.md`
   - `.agents/skills/debugging-and-error-recovery/SKILL.md`
   - `.agents/skills/learning-opportunities/SKILL.md`
@@ -29,6 +30,7 @@ This repository includes local agent guidance in `.agents/skills/`.
 1. Apply `incremental-implementation` for multi-file or higher-risk changes.
 1. Apply `code-review-and-quality` as the final quality gate before completion.
 1. Apply `ci-cd-and-automation` when changing checks, tasks, or pipelines.
+1. Apply `privacy-and-licensing` when adding dependencies, datasets, models, external services, or publishing project outputs.
 1. Apply `debugging-and-error-recovery` when tests, CI, or runtime behavior fails unexpectedly.
 1. Optionally apply `learning-opportunities` for 10-15 minute learning exercises after design-heavy work.
 1. Apply `simple-english` when writing or rewriting documentation, READMEs, error messages, or other user-facing text.
