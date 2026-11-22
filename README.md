@@ -57,6 +57,7 @@ Generated projects include agent guidance in `.agents/skills/` with common skill
 - Incremental implementation
 - Code review and quality checks
 - CI/CD and automation workflow alignment
+- Data privacy, dependency licensing, and AI model or dataset usage checks (`privacy-and-licensing`)
 - Targeted correctness properties and honest verification reports (`formal-verification`)
 - Debugging and error recovery
 - Optional learning exercises for comprehension (`learning-opportunities`)
